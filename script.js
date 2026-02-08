@@ -1,474 +1,735 @@
-// بيانات التطبيق
+// بيانات التطبيق المحسنة
 const appData = {
     // كلمة المرور الصحيحة
     correctPassword: "حبنا",
     
-    // رسالة الدعوة
-    invitationMessage: "رمضان كريم يا أغلى إنسان في حياتي! 🌙\n\nأدعوك في هذا الشهر الكريم أن نكون أقرب إلى بعض، وأن نجعل من هذا الشهر فرصة لتعميق علاقتنا وتجديد مشاعرنا. \n\nلنبدأ هذا الشهر معًا بصلاة تراويح وقلوب عامرة بحب الله وبحب بعضنا. \n\nأحبك في الله وأسأل الله أن يبارك فينا وأن يجمعنا في جنات النعيم. \n\nكل عام وأنت أغلى هدية في حياتي يا حبيبي/حبيبتي ❤️",
+    // تاريخ بداية رمضان (يمكن تعديله)
+    ramadanStartDate: new Date("March 23, 2025 00:00:00").getTime(),
     
-    // ذكرياتنا
+    // رسالة الدعوة المحسنة
+    invitationMessage: `رمضان كريم يا أغلى إنسان في حياتي! 🌙
+
+أدعوك في هذا الشهر الكريم أن نكون أقرب إلى بعض، وأن نجعل من هذا الشهر فرصة لتعميق علاقتنا وتجديد مشاعرنا. 
+
+لنبدأ هذا الشهر معًا بصلاة تراويح وقلوب عامرة بحب الله وبحب بعضنا، ولنكثر من الدعاء لنا ولأهلنا.
+
+رمضان ليس فقط شهر الصيام، بل هو شهر الصبر والتقوى والتسامح والمحبة. فلنستغل هذه الفرصة لنكون أفضل مع بعضنا.
+
+أعدك بأن أجعل هذا الشهر أجمل شهر في حياتنا، مليء بالذكريات الجميلة واللحظات التي لا تنسى.
+
+أحبك في الله وأسأل الله أن يبارك فينا، وأن يحفظنا لبعض، وأن يجمعنا في جنات النعيم.
+
+كل عام وأنت أغلى هدية في حياتي، وأنت نعمة من الله أشكر عليها كل يوم.
+
+❤️🌙 حبيبي/حبيبتي ❤️🌙`,
+
+    // ذكرياتنا مع صور رمضانية واقعية
     memories: [
         {
             id: 1,
-            title: "أول صورة معًا ❤️",
-            image: "https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+            title: "أول رمضان معًا ❤️",
+            date: "رمضان 2023",
+            image: "https://images.unsplash.com/photo-1518568814500-bf0f8d125f46?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
         },
         {
             id: 2,
-            title: "أول خروجة معًا ☕",
-            image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
+            title: "سحورنا الأول ☕",
+            date: "رمضان 2023",
+            image: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
         },
         {
             id: 3,
-            title: "أجمل ذكرى 📸",
-            image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80"
+            title: "صلاة التراويح معًا 🕌",
+            date: "رمضان 2023",
+            image: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&auto=format&fit=crop&w-800&q=80"
         },
         {
             id: 4,
-            title: "رحلة لا تنسى ✈️",
-            image: "https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+            title: "إفطار العائلة 🍽️",
+            date: "رمضان 2023",
+            image: "https://images.unsplash.com/photo-1539635278303-d4002c07eae3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        },
+        {
+            id: 5,
+            title: "ليلة القدر المميزة 🌟",
+            date: "رمضان 2023",
+            image: "https://images.unsplash.com/photo-1531512073830-ba890ca4eba2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+        },
+        {
+            id: 6,
+            title: "عيد الفطر الأول 🎉",
+            date: "رمضان 2023",
+            image: "https://images.unsplash.com/photo-1520970014086-2208d157c9e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
         }
     ],
     
-    // حساب أيام رمضان
-    getRamadanInfo: function() {
-        const today = new Date();
-        // نفترض أن رمضان يبدأ في 23 مارس 2025 (يمكن تغيير التاريخ)
-        const ramadanStart = new Date(2025, 2, 23); // شهر 2 هو مارس (الشهور تبدأ من 0)
+    // حالات العداد
+    getCountdownInfo: function() {
+        const now = new Date().getTime();
+        const distance = this.ramadanStartDate - now;
         
-        // إذا كان التاريخ الحالي قبل رمضان
-        if (today < ramadanStart) {
-            const diffTime = ramadanStart - today;
-            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        if (distance < 0) {
+            // رمضان بدأ
+            const daysSince = Math.floor(Math.abs(distance) / (1000 * 60 * 60 * 24));
+            return {
+                hasStarted: true,
+                daysSinceStart: daysSince + 1,
+                message: `اليوم ${daysSince + 1} من رمضان الكريم 🌙`,
+                status: "رمضان بدأ! 🎉"
+            };
+        } else {
+            // قبل رمضان
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // حساب النسبة المئوية للتقدم (نفترض أن العد التنازلي لمدة 30 يوم)
+            const totalDays = 30;
+            const progress = ((totalDays - days) / totalDays) * 100;
             
             return {
                 hasStarted: false,
-                daysLeft: diffDays,
-                message: `فاض ${diffDays} أيام على أول يوم رمضان 🌙`,
-                counterValue: `${diffDays} أيام`
-            };
-        } else {
-            // إذا بدأ رمضان
-            const daysSinceStart = Math.floor((today - ramadanStart) / (1000 * 60 * 60 * 24)) + 1;
-            
-            return {
-                hasStarted: true,
-                daysSinceStart: daysSinceStart,
-                message: `أول يوم رمضان مع أغلى حد ❤️`,
-                counterValue: `اليوم ${daysSinceStart} من رمضان`
+                days,
+                hours,
+                minutes,
+                seconds,
+                progress: Math.min(progress, 100),
+                message: days === 0 ? 
+                    `رمضان يبدأ اليوم! 🎉` : 
+                    `باقي ${days} يوم ${hours} ساعة ${minutes} دقيقة`,
+                status: "في انتظار رمضان الكريم"
             };
         }
     }
 };
 
-// تهيئة DOM بعد تحميل الصفحة
+// متغيرات عامة
+let swiperInstance = null;
+let invitationTypingInterval = null;
+let countdownInterval = null;
+let confettiInterval = null;
+
+// تهيئة التطبيق عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', function() {
-    // عناصر DOM الرئيسية
-    const loginPage = document.getElementById('loginPage');
-    const mainPage = document.getElementById('mainPage');
+    // التحقق من حالة الدخول المحفوظة
+    const isLoggedIn = localStorage.getItem('ramadanLoversLoggedIn') === 'true';
+    
+    if (isLoggedIn) {
+        // المستخدم مسجل الدخول بالفعل
+        showMainPage();
+        initMainPage();
+    } else {
+        // إظهار صفحة الدخول
+        showLoginPage();
+        initLoginPage();
+    }
+    
+    // تهيئة الخلفية المتحركة
+    initBackgroundAnimation();
+});
+
+// تهيئة صفحة الدخول
+function initLoginPage() {
     const loginBox = document.getElementById('loginBox');
     const passwordInput = document.getElementById('passwordInput');
     const submitBtn = document.getElementById('submitBtn');
     const errorMessage = document.getElementById('errorMessage');
     const successMessage = document.getElementById('successMessage');
-    const backgroundAnimation = document.getElementById('backgroundAnimation');
-    const themeToggle = document.getElementById('themeToggle');
-    const ramadanCounterTitle = document.getElementById('ramadanCounterTitle');
-    const ramadanCounterValue = document.getElementById('ramadanCounterValue');
-    const moonCircle = document.querySelector('.moon-circle');
-    const playPauseBtn = document.getElementById('playPauseBtn');
-    const volumeSlider = document.getElementById('volumeSlider');
-    const backgroundMusic = document.getElementById('backgroundMusic');
-    const invitationCard = document.getElementById('invitationCard');
-    const invitationText = document.getElementById('invitationText');
-    const timeline = document.getElementById('timeline');
-    const videoContainer = document.getElementById('videoContainer');
-    const memoryVideo = document.getElementById('memoryVideo');
-    const playBtn = document.getElementById('playBtn');
-    const surpriseBtn = document.getElementById('surpriseBtn');
-    const surpriseMessage = document.getElementById('surpriseMessage');
     
-    // التحقق من حالة الدخول المحفوظة
-    const isLoggedIn = localStorage.getItem('ramadanLoversLoggedIn') === 'true';
-    
-    if (isLoggedIn) {
-        // تخطي صفحة الدخول إذا كان المستخدم قد سجل الدخول مسبقًا
-        loginPage.style.display = 'none';
-        mainPage.classList.add('active');
-        initMainPage();
-    } else {
-        // إظهار صفحة الدخول
-        loginPage.style.display = 'flex';
-        mainPage.classList.remove('active');
-    }
-    
-    // إنشاء العناصر المتحركة في الخلفية
-    createBackgroundElements();
-    
-    // زر الدخول
+    // إضافة مستمعي الأحداث
     submitBtn.addEventListener('click', handleLogin);
     passwordInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') handleLogin();
     });
+    
+    // تركيز على حقل كلمة المرور
+    passwordInput.focus();
     
     function handleLogin() {
         const password = passwordInput.value.trim();
         
         if (password === appData.correctPassword) {
             // كلمة المرور صحيحة
-            successMessage.textContent = 'نورت عالمنا ❤️🌙';
-            errorMessage.textContent = '';
+            showMessage(successMessage, 'نورت عالمنا الرمضاني ❤️🌙');
+            hideMessage(errorMessage);
             loginBox.classList.remove('shake');
             
             // حفظ حالة الدخول
             localStorage.setItem('ramadanLoversLoggedIn', 'true');
             
-            // الانتقال إلى الصفحة الرئيسية مع تأثير
+            // الانتقال للصفحة الرئيسية مع تأثير
             setTimeout(() => {
-                loginPage.style.opacity = '0';
-                loginPage.style.transition = 'opacity 1s ease';
+                loginBox.style.opacity = '0';
+                loginBox.style.transform = 'scale(0.9)';
                 
                 setTimeout(() => {
-                    loginPage.style.display = 'none';
-                    mainPage.classList.add('active');
+                    showMainPage();
                     initMainPage();
-                }, 1000);
+                }, 500);
             }, 1500);
         } else {
             // كلمة المرور خاطئة
-            errorMessage.textContent = 'لا لا… السر ده بينا بس 😌';
-            successMessage.textContent = '';
+            showMessage(errorMessage, 'لا لا… السر ده بينا بس 😌');
+            hideMessage(successMessage);
             loginBox.classList.add('shake');
             
-            // إزالة تأثير الاهتزاز بعد انتهاءه
+            // إزالة تأثير الاهتزاز
             setTimeout(() => {
                 loginBox.classList.remove('shake');
             }, 500);
         }
     }
+}
+
+// تهيئة الصفحة الرئيسية
+function initMainPage() {
+    // تهيئة العداد
+    initCountdown();
     
-    // وظيفة تهيئة الصفحة الرئيسية
-    function initMainPage() {
-        // تحديث عدّاد رمضان
-        updateRamadanCounter();
-        
-        // تشغيل الموسيقى تلقائيًا
-        backgroundMusic.volume = volumeSlider.value / 100;
-        backgroundMusic.play().catch(e => console.log('تعذر تشغيل الموسيقى تلقائيًا:', e));
-        
-        // تحديث زر التشغيل/الإيقاف
-        updatePlayPauseButton();
-        
-        // إضافة الذكريات إلى تايم لاين
-        loadMemories();
-        
-        // إعداد المستمعين للأحداث
-        setupEventListeners();
-        
-        // إنشاء مؤثرات الخلفية للصفحة الرئيسية
-        createMainPageBackground();
-    }
+    // تهيئة مشغل الصوت
+    initAudioPlayer();
     
-    // تحديث عدّاد رمضان
-    function updateRamadanCounter() {
-        const ramadanInfo = appData.getRamadanInfo();
-        ramadanCounterTitle.textContent = ramadanInfo.message;
-        ramadanCounterValue.textContent = ramadanInfo.counterValue;
-        
-        // تحديث تقدم الهلال
-        if (!ramadanInfo.hasStarted) {
-            const daysLeft = ramadanInfo.daysLeft;
-            // نفترض أن رمضان بعد 30 يوم كحد أقصى
-            const maxDays = 30;
-            const progress = ((maxDays - daysLeft) / maxDays) * 283;
-            moonCircle.style.strokeDashoffset = 283 - progress;
-        } else {
-            // إذا بدأ رمضان، يظهر الهلال مكتملاً
-            moonCircle.style.strokeDashoffset = 0;
-        }
-    }
+    // تهيئة دعوة ليك
+    initInvitation();
     
-    // إنشاء عناصر الخلفية المتحركة
-    function createBackgroundElements() {
-        // إنشاء 5 هلالات
-        for (let i = 0; i < 5; i++) {
-            const moon = document.createElement('div');
-            moon.className = 'moon';
-            moon.style.top = `${Math.random() * 80 + 10}%`;
-            moon.style.left = `${Math.random() * 80 + 10}%`;
-            moon.style.animationDelay = `${Math.random() * 10}s`;
-            moon.style.width = `${Math.random() * 40 + 40}px`;
-            moon.style.height = moon.style.width;
-            backgroundAnimation.appendChild(moon);
-        }
-        
-        // إنشاء 8 فوانيس
-        for (let i = 0; i < 8; i++) {
-            const lantern = document.createElement('div');
-            lantern.className = 'lantern';
-            lantern.style.top = `${Math.random() * 80 + 10}%`;
-            lantern.style.left = `${Math.random() * 80 + 10}%`;
-            lantern.style.animationDelay = `${Math.random() * 15}s`;
-            lantern.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
-            backgroundAnimation.appendChild(lantern);
-        }
-        
-        // إنشاء 50 نجمة
-        for (let i = 0; i < 50; i++) {
-            const star = document.createElement('div');
-            star.className = 'star';
-            star.style.top = `${Math.random() * 100}%`;
-            star.style.left = `${Math.random() * 100}%`;
-            star.style.animationDelay = `${Math.random() * 3}s`;
-            star.style.animationDuration = `${Math.random() * 2 + 1}s`;
-            backgroundAnimation.appendChild(star);
-        }
-    }
+    // تهيئة الذكريات
+    initMemoriesSlider();
     
-    // إنشاء خلفية إضافية للصفحة الرئيسية
-    function createMainPageBackground() {
-        // إضافة المزيد من النجوم في وضع الليل
-        if (!document.body.classList.contains('lantern-mode')) {
-            for (let i = 0; i < 30; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.animationDelay = `${Math.random() * 3}s`;
-                star.style.animationDuration = `${Math.random() * 2 + 1}s`;
-                star.style.width = `${Math.random() * 3 + 2}px`;
-                star.style.height = star.style.width;
-                backgroundAnimation.appendChild(star);
-            }
-        }
-    }
+    // تهيئة الفيديو
+    initVideoPlayer();
     
-    // إعداد المستمعين للأحداث في الصفحة الرئيسية
-    function setupEventListeners() {
-        // زر التحكم في الإضاءة
-        themeToggle.addEventListener('click', toggleTheme);
+    // تهيئة زر المفاجأة
+    initSurpriseButton();
+    
+    // تهيئة عناصر التحكم
+    initControlButtons();
+    
+    // إظهار مشغل الصوت بعد التأخير
+    setTimeout(() => {
+        const audioPlayer = document.getElementById('audioPlayer');
+        audioPlayer.classList.add('active');
         
-        // التحكم في الصوت
-        playPauseBtn.addEventListener('click', toggleMusic);
-        volumeSlider.addEventListener('input', updateVolume);
-        backgroundMusic.addEventListener('ended', function() {
-            backgroundMusic.currentTime = 0;
-            backgroundMusic.play();
+        // تشغيل الموسيقى
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        backgroundMusic.play().catch(e => {
+            console.log('يجب التفاعل مع الصفحة أولاً لتشغيل الموسيقى');
         });
-        
-        // دعوة ليك
-        invitationCard.addEventListener('click', showInvitation);
-        
-        // تشغيل الفيديو
-        playBtn.addEventListener('click', playVideo);
-        memoryVideo.addEventListener('click', toggleVideo);
-        
-        // زر المفاجأة
-        surpriseBtn.addEventListener('click', showSurprise);
-        
-        // تأثيرات التمرير
-        setupScrollAnimations();
-    }
+    }, 1000);
+}
+
+// تهيئة العداد
+function initCountdown() {
+    const daysCount = document.getElementById('daysCount');
+    const hoursCount = document.getElementById('hoursCount');
+    const minutesCount = document.getElementById('minutesCount');
+    const secondsCount = document.getElementById('secondsCount');
+    const statusText = document.getElementById('statusText');
+    const ramadanCounterTitle = document.getElementById('ramadanCounterTitle');
+    const moonProgressCircle = document.querySelector('.moon-progress-circle');
     
-    // تبديل وضع الإضاءة
-    function toggleTheme() {
-        const body = document.body;
-        const isLanternMode = body.classList.contains('lantern-mode');
+    // تحديث العداد فورًا
+    updateCountdown();
+    
+    // تحديث العداد كل ثانية
+    countdownInterval = setInterval(updateCountdown, 1000);
+    
+    function updateCountdown() {
+        const countdownInfo = appData.getCountdownInfo();
         
-        if (isLanternMode) {
-            body.classList.remove('lantern-mode');
-            themeToggle.innerHTML = '<i class="fas fa-moon"></i><span>الوضع الليلي</span>';
+        if (!countdownInfo.hasStarted) {
+            // قبل رمضان
+            daysCount.textContent = padNumber(countdownInfo.days);
+            hoursCount.textContent = padNumber(countdownInfo.hours);
+            minutesCount.textContent = padNumber(countdownInfo.minutes);
+            secondsCount.textContent = padNumber(countdownInfo.seconds);
+            statusText.textContent = countdownInfo.status;
+            ramadanCounterTitle.textContent = 'عدّاد رمضان';
             
-            // إزالة الفوانيس الإضافية
-            const extraLanterns = document.querySelectorAll('.extra-lantern');
-            extraLanterns.forEach(lantern => lantern.remove());
+            // تحديث تقدم الهلال
+            const progress = 283 - (countdownInfo.progress / 100 * 283);
+            moonProgressCircle.style.strokeDashoffset = progress;
         } else {
-            body.classList.add('lantern-mode');
-            themeToggle.innerHTML = '<i class="fas fa-lantern"></i><span>وضع الفوانيس</span>';
+            // رمضان بدأ
+            daysCount.textContent = padNumber(countdownInfo.daysSinceStart);
+            hoursCount.textContent = '00';
+            minutesCount.textContent = '00';
+            secondsCount.textContent = '00';
+            statusText.textContent = 'رمضان كريم! 🎉';
+            ramadanCounterTitle.textContent = 'أيام رمضان';
             
-            // إضافة فوانيس إضافية
-            for (let i = 0; i < 10; i++) {
-                const lantern = document.createElement('div');
-                lantern.className = 'lantern extra-lantern';
-                lantern.style.top = `${Math.random() * 80 + 10}%`;
-                lantern.style.left = `${Math.random() * 80 + 10}%`;
-                lantern.style.animationDelay = `${Math.random() * 15}s`;
-                lantern.style.transform = `scale(${Math.random() * 0.7 + 0.3})`;
-                backgroundAnimation.appendChild(lantern);
-            }
+            // الهلال مكتمل
+            moonProgressCircle.style.strokeDashoffset = 0;
+            
+            // تحديث النص في الأعلى
+            document.getElementById('counterStatus').querySelector('span').textContent = countdownInfo.message;
         }
     }
     
-    // التحكم في الموسيقى
-    function toggleMusic() {
+    function padNumber(num) {
+        return num.toString().padStart(2, '0');
+    }
+}
+
+// تهيئة مشغل الصوت
+function initAudioPlayer() {
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const progressSlider = document.getElementById('progressSlider');
+    const currentTime = document.getElementById('currentTime');
+    const durationTime = document.getElementById('durationTime');
+    
+    // تعيين مستوى الصوت الافتراضي
+    backgroundMusic.volume = volumeSlider.value / 100;
+    
+    // تحديث وقت المدة عند تحميل الملف
+    backgroundMusic.addEventListener('loadedmetadata', function() {
+        durationTime.textContent = formatTime(backgroundMusic.duration);
+    });
+    
+    // تحديث وقت التشغيل والتقدم
+    backgroundMusic.addEventListener('timeupdate', function() {
+        const progress = (backgroundMusic.currentTime / backgroundMusic.duration) * 100;
+        progressSlider.value = progress || 0;
+        currentTime.textContent = formatTime(backgroundMusic.currentTime);
+    });
+    
+    // تحديث زر التشغيل/الإيقاف
+    backgroundMusic.addEventListener('play', function() {
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    });
+    
+    backgroundMusic.addEventListener('pause', function() {
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+    });
+    
+    // التحكم في التشغيل/الإيقاف
+    playPauseBtn.addEventListener('click', function() {
         if (backgroundMusic.paused) {
             backgroundMusic.play();
         } else {
             backgroundMusic.pause();
         }
-        updatePlayPauseButton();
-    }
+    });
     
-    function updatePlayPauseButton() {
-        const icon = playPauseBtn.querySelector('i');
-        if (backgroundMusic.paused) {
-            icon.className = 'fas fa-play';
-        } else {
-            icon.className = 'fas fa-pause';
-        }
-    }
+    // التحكم في مستوى الصوت
+    volumeSlider.addEventListener('input', function() {
+        backgroundMusic.volume = this.value / 100;
+    });
     
-    function updateVolume() {
-        backgroundMusic.volume = volumeSlider.value / 100;
-    }
+    // التحكم في التقدم
+    progressSlider.addEventListener('input', function() {
+        const time = (this.value / 100) * backgroundMusic.duration;
+        backgroundMusic.currentTime = time;
+    });
     
-    // عرض دعوة ليك
-    function showInvitation() {
-        if (invitationText.classList.contains('typing-text')) {
-            return; // الرسالة معروضة بالفعل
-        }
+    // تنسيق الوقت
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+}
+
+// تهيئة دعوة ليك
+function initInvitation() {
+    const invitationCard = document.getElementById('invitationCard');
+    const invitationText = document.getElementById('invitationText');
+    const closeInvitationBtn = document.getElementById('closeInvitationBtn');
+    let isTyping = false;
+    
+    invitationCard.addEventListener('click', function(e) {
+        if (isTyping || invitationText.textContent.length > 0) return;
         
+        // بدء تأثير الكتابة
+        isTyping = true;
         invitationText.textContent = '';
-        invitationText.classList.add('typing-text');
         
-        // محاكاة تأثير الكتابة
+        // إظهار زر الإغلاق
+        closeInvitationBtn.style.display = 'flex';
+        
+        // تأثير الكتابة
         const message = appData.invitationMessage;
-        let i = 0;
-        const typingInterval = setInterval(() => {
-            if (i < message.length) {
-                invitationText.textContent += message.charAt(i);
-                i++;
+        let index = 0;
+        
+        invitationTypingInterval = setInterval(() => {
+            if (index < message.length) {
+                invitationText.textContent += message.charAt(index);
+                index++;
+                
+                // التمرير تلقائيًا
+                invitationText.parentElement.scrollTop = invitationText.parentElement.scrollHeight;
             } else {
-                clearInterval(typingInterval);
-                
-                // إضافة زر الإغلاق
-                const closeBtn = document.createElement('button');
-                closeBtn.className = 'close-btn';
-                closeBtn.textContent = 'أغلق الرسالة';
-                closeBtn.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                    invitationText.classList.remove('typing-text');
-                    invitationText.textContent = 'اضغط هنا لقراءة الرسالة الخاصة';
-                    closeBtn.remove();
-                });
-                
-                invitationCard.appendChild(closeBtn);
+                clearInterval(invitationTypingInterval);
+                isTyping = false;
             }
-        }, 50);
-    }
+        }, 30);
+    });
     
-    // تحميل الذكريات في التايم لاين
-    function loadMemories() {
-        appData.memories.forEach((memory, index) => {
-            const timelineItem = document.createElement('div');
-            timelineItem.className = 'timeline-item';
-            timelineItem.id = `memory-${memory.id}`;
-            
-            timelineItem.innerHTML = `
-                <div class="timeline-content">
-                    <img src="${memory.image}" alt="${memory.title}" class="timeline-img">
-                    <h3 class="timeline-title">${memory.title}</h3>
-                </div>
-            `;
-            
-            timeline.appendChild(timelineItem);
-            
-            // إظهار العنصر بعد تأخير
-            setTimeout(() => {
-                timelineItem.classList.add('show');
-            }, 300 + (index * 300));
-        });
-    }
+    // زر إغلاق الرسالة
+    closeInvitationBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        
+        // إعادة تعيين الرسالة
+        clearInterval(invitationTypingInterval);
+        invitationText.textContent = '';
+        closeInvitationBtn.style.display = 'none';
+        isTyping = false;
+    });
+}
+
+// تهيئة سلايدر الذكريات
+function initMemoriesSlider() {
+    const memoriesSlider = document.getElementById('memoriesSlider');
     
-    // تشغيل الفيديو
-    function playVideo() {
+    // إضافة الصور إلى السلايدر
+    appData.memories.forEach(memory => {
+        const slide = document.createElement('div');
+        slide.className = 'swiper-slide';
+        
+        slide.innerHTML = `
+            <img src="${memory.image}" alt="${memory.title}" class="memory-image" loading="lazy">
+            <div class="memory-overlay">
+                <h3 class="memory-title">${memory.title}</h3>
+                <p class="memory-date">${memory.date}</p>
+            </div>
+        `;
+        
+        memoriesSlider.appendChild(slide);
+    });
+    
+    // تهيئة Swiper
+    swiperInstance = new Swiper('.memories-slider', {
+        direction: 'horizontal',
+        loop: true,
+        slidesPerView: 1,
+        spaceBetween: 20,
+        centeredSlides: true,
+        speed: 800,
+        autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 2,
+                spaceBetween: 20,
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+        },
+    });
+}
+
+// تهيئة مشغل الفيديو
+function initVideoPlayer() {
+    const memoryVideo = document.getElementById('memoryVideo');
+    const videoPlayBtn = document.getElementById('videoPlayBtn');
+    const videoContainer = document.getElementById('videoContainer');
+    const videoProgressSlider = document.getElementById('videoProgressSlider');
+    const videoFrame = videoContainer.querySelector('.video-frame');
+    
+    // تحديث تقدم الفيديو
+    memoryVideo.addEventListener('timeupdate', function() {
+        const progress = (memoryVideo.currentTime / memoryVideo.duration) * 100;
+        videoProgressSlider.value = progress || 0;
+    });
+    
+    // زر تشغيل الفيديو
+    videoPlayBtn.addEventListener('click', function() {
         if (memoryVideo.paused) {
             memoryVideo.play();
-            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            videoContainer.style.transform = 'scale(1.05)';
-            
-            // إضافة إطار زخرفي
-            videoContainer.style.boxShadow = '0 20px 40px rgba(212, 175, 55, 0.4)';
-            videoContainer.style.border = '5px solid var(--gold-color)';
+            videoFrame.classList.add('playing');
+            videoPlayBtn.querySelector('.play-text').textContent = 'توقف مؤقت';
+            videoPlayBtn.querySelector('i').className = 'fas fa-pause';
         } else {
             memoryVideo.pause();
-            playBtn.innerHTML = '<i class="fas fa-play"></i>';
-            videoContainer.style.transform = 'scale(1)';
-            
-            // إزالة الإطار الزخرفي
-            videoContainer.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.4)';
-            videoContainer.style.border = '3px solid var(--gold-color)';
+            videoFrame.classList.remove('playing');
+            videoPlayBtn.querySelector('.play-text').textContent = 'استمرار';
+            videoPlayBtn.querySelector('i').className = 'fas fa-play';
         }
-    }
+    });
     
-    function toggleVideo() {
-        if (memoryVideo.paused) {
-            memoryVideo.play();
-            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    // التحكم في تقدم الفيديو
+    videoProgressSlider.addEventListener('input', function() {
+        const time = (this.value / 100) * memoryVideo.duration;
+        memoryVideo.currentTime = time;
+    });
+    
+    // إعادة الفيديو عند الانتهاء
+    memoryVideo.addEventListener('ended', function() {
+        videoFrame.classList.remove('playing');
+        videoPlayBtn.querySelector('.play-text').textContent = 'شاهد مرة أخرى';
+        videoPlayBtn.querySelector('i').className = 'fas fa-redo';
+    });
+    
+    // إضافة مستمع للنقر المزدوج للتكبير
+    videoFrame.addEventListener('dblclick', function() {
+        if (!document.fullscreenElement) {
+            videoFrame.requestFullscreen().catch(err => {
+                console.log(`Error attempting to enable full-screen mode: ${err.message}`);
+            });
         } else {
-            memoryVideo.pause();
-            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            document.exitFullscreen();
         }
-    }
+    });
+}
+
+// تهيئة زر المفاجأة
+function initSurpriseButton() {
+    const surpriseBtn = document.getElementById('surpriseBtn');
+    const surpriseMessage = document.getElementById('surpriseMessage');
+    const closeSurpriseBtn = document.getElementById('closeSurpriseBtn');
     
-    // عرض المفاجأة
-    function showSurprise() {
-        // عرض الرسالة
+    surpriseBtn.addEventListener('click', function() {
+        // إظهار الرسالة
         surpriseMessage.style.display = 'block';
         
-        // إنشاء مؤثرات التفرق (confetti)
-        createConfetti();
+        // إنشاء مؤثرات التفرق
+        createConfettiEffect();
         
-        // إضافة تأثير اهتزاز للزر
-        surpriseBtn.style.animation = 'shake 0.5s ease-in-out';
-        setTimeout(() => {
-            surpriseBtn.style.animation = '';
-        }, 500);
+        // تشغيل صوت الفرح
+        playCelebrationSound();
         
-        // إغلاق الرسالة عند النقر خارجها
-        setTimeout(() => {
-            document.addEventListener('click', closeSurpriseOnClick);
-        }, 100);
-    }
+        // إخفاء الزر
+        surpriseBtn.style.display = 'none';
+    });
     
-    function closeSurpriseOnClick(e) {
-        if (!surpriseMessage.contains(e.target) && e.target !== surpriseBtn) {
-            surpriseMessage.style.display = 'none';
-            document.removeEventListener('click', closeSurpriseOnClick);
+    closeSurpriseBtn.addEventListener('click', function() {
+        // إخفاء الرسالة
+        surpriseMessage.style.display = 'none';
+        
+        // إعادة إظهار الزر
+        surpriseBtn.style.display = 'inline-flex';
+        
+        // إيقاف المؤثرات
+        clearInterval(confettiInterval);
+    });
+}
+
+// تهيئة عناصر التحكم
+function initControlButtons() {
+    const themeToggle = document.getElementById('themeToggle');
+    const logoutBtn = document.getElementById('logoutBtn');
+    
+    // تبديل السمة
+    themeToggle.addEventListener('click', function() {
+        document.body.classList.toggle('lantern-mode');
+        
+        const icon = themeToggle.querySelector('.theme-icon i');
+        const text = themeToggle.querySelector('.theme-text');
+        
+        if (document.body.classList.contains('lantern-mode')) {
+            icon.className = 'fas fa-lantern';
+            text.textContent = 'وضع الفوانيس';
+            
+            // إضافة فوانيس إضافية
+            addLanternsToBackground();
+        } else {
+            icon.className = 'fas fa-moon';
+            text.textContent = 'الوضع الليلي';
+            
+            // إزالة الفوانيس الإضافية
+            removeExtraLanterns();
         }
-    }
+    });
     
-    // إنشاء مؤثرات التفرق
-    function createConfetti() {
-        const colors = [getCssVariable('--gold-color'), '#ff3333', '#ffffff', '#1a5d1a'];
+    // زر الخروج
+    logoutBtn.addEventListener('click', function() {
+        localStorage.removeItem('ramadanLoversLoggedIn');
+        showLoginPage();
+        initLoginPage();
         
-        for (let i = 0; i < 150; i++) {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.left = `${Math.random() * 100}vw`;
-            confetti.style.width = `${Math.random() * 10 + 5}px`;
-            confetti.style.height = confetti.style.width;
-            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-            
-            document.body.appendChild(confetti);
-            
-            // حركة التفرق
-            const animation = confetti.animate([
-                { top: '0px', opacity: 1, transform: 'rotate(0deg)' },
-                { top: '100vh', opacity: 0, transform: `rotate(${Math.random() * 720}deg)` }
-            ], {
-                duration: Math.random() * 3000 + 2000,
-                easing: 'cubic-bezier(0.1, 0.8, 0.9, 0.1)'
-            });
-            
-            // إزالة العنصر بعد انتهاء الحركة
-            animation.onfinish = () => confetti.remove();
-        }
+        // إعادة تعيين الصفحة الرئيسية
+        const mainPage = document.getElementById('mainPage');
+        mainPage.classList.remove('active');
+        mainPage.style.opacity = '0';
+        
+        // إيقاف الموسيقى
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        backgroundMusic.pause();
+        backgroundMusic.currentTime = 0;
+    });
+}
+
+// تهيئة الخلفية المتحركة
+function initBackgroundAnimation() {
+    const backgroundAnimation = document.getElementById('backgroundAnimation');
+    
+    // إضافة نجمة
+    for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        
+        // حجم عشوائي
+        if (Math.random() > 0.7) star.classList.add('star-large');
+        if (Math.random() > 0.9) star.classList.add('ramadan-star');
+        
+        // وضع عشوائي
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        
+        // تأخير وتوقيت عشوائي
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        
+        backgroundAnimation.appendChild(star);
     }
     
-    // إعداد تأثيرات التمرير
-    function setupScrollAnimations() {
+    // إضافة هلال واقعي
+    const moon = document.createElement('div');
+    moon.className = 'real-crescent';
+    moon.style.top = '15%';
+    moon.style.left = '85%';
+    backgroundAnimation.appendChild(moon);
+    
+    // إضافة فوانيس رمضانية
+    for (let i = 0; i < 5; i++) {
+        const lantern = document.createElement('div');
+        lantern.className = 'traditional-lantern';
+        
+        lantern.style.top = `${20 + i * 15}%`;
+        lantern.style.left = `${10 + i * 5}%`;
+        lantern.style.animationDelay = `${i * 3}s`;
+        
+        backgroundAnimation.appendChild(lantern);
+    }
+}
+
+// إضافة فوانيس إضافية في وضع الفوانيس
+function addLanternsToBackground() {
+    const backgroundAnimation = document.getElementById('backgroundAnimation');
+    
+    for (let i = 0; i < 8; i++) {
+        const lantern = document.createElement('div');
+        lantern.className = 'traditional-lantern extra-lantern';
+        
+        lantern.style.top = `${Math.random() * 80 + 10}%`;
+        lantern.style.left = `${Math.random() * 80 + 10}%`;
+        lantern.style.animationDelay = `${Math.random() * 10}s`;
+        lantern.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+        
+        backgroundAnimation.appendChild(lantern);
+    }
+}
+
+// إزالة الفوانيس الإضافية
+function removeExtraLanterns() {
+    const extraLanterns = document.querySelectorAll('.extra-lantern');
+    extraLanterns.forEach(lantern => lantern.remove());
+}
+
+// إنشاء مؤثرات التفرق
+function createConfettiEffect() {
+    const colors = ['#d4af37', '#ff3333', '#ffffff', '#1a5d1a', '#0a3d62'];
+    
+    confettiInterval = setInterval(() => {
+        for (let i = 0; i < 15; i++) {
+            createConfettiPiece();
+        }
+    }, 300);
+    
+    function createConfettiPiece() {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        
+        // خصائص عشوائية
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.width = `${Math.random() * 10 + 5}px`;
+        confetti.style.height = confetti.style.width;
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        
+        document.body.appendChild(confetti);
+        
+        // حركة التفرق
+        const animation = confetti.animate([
+            { 
+                top: '0px', 
+                opacity: 1, 
+                transform: `rotate(0deg) scale(1)`,
+            },
+            { 
+                top: '100vh', 
+                opacity: 0, 
+                transform: `rotate(${Math.random() * 720}deg) scale(0.5)`,
+            }
+        ], {
+            duration: Math.random() * 2000 + 1000,
+            easing: 'cubic-bezier(0.1, 0.8, 0.9, 0.1)',
+        });
+        
+        // إزالة العنصر بعد انتهاء الحركة
+        animation.onfinish = () => confetti.remove();
+    }
+}
+
+// تشغيل صوت الاحتفال
+function playCelebrationSound() {
+    const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-happy-crowd-laugh-464.mp3');
+    audio.volume = 0.3;
+    audio.play().catch(e => console.log('تعذر تشغيل صوت الاحتفال'));
+}
+
+// وظائف مساعدة
+function showLoginPage() {
+    const loginPage = document.getElementById('loginPage');
+    const mainPage = document.getElementById('mainPage');
+    
+    loginPage.style.display = 'flex';
+    mainPage.style.display = 'none';
+}
+
+function showMainPage() {
+    const loginPage = document.getElementById('loginPage');
+    const mainPage = document.getElementById('mainPage');
+    
+    loginPage.style.display = 'none';
+    mainPage.style.display = 'flex';
+    
+    // إظهار الصفحة الرئيسية بتأثير
+    setTimeout(() => {
+        mainPage.classList.add('active');
+        mainPage.style.opacity = '1';
+    }, 100);
+}
+
+function showMessage(element, message) {
+    element.textContent = message;
+    element.style.display = 'block';
+}
+
+function hideMessage(element) {
+    element.style.display = 'none';
+}
+
+// التنظيف عند إغلاق الصفحة
+window.addEventListener('beforeunload', function() {
+    if (countdownInterval) clearInterval(countdownInterval);
+    if (invitationTypingInterval) clearInterval(invitationTypingInterval);
+    if (confettiInterval) clearInterval(confettiInterval);
+    
+    if (swiperInstance) {
+        swiperInstance.destroy(true, true);
+    }
+});
+
+// إضافة تأثيرات GSAP للعناصر
+document.addEventListener('DOMContentLoaded', function() {
+    // تحميل GSAP إذا كان متاحًا
+    if (typeof gsap !== 'undefined') {
+        // تأثيرات عند دخول الصفحة الرئيسية
         const observerOptions = {
             root: null,
             rootMargin: '0px',
@@ -478,18 +739,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('show');
+                    gsap.fromTo(entry.target, 
+                        { opacity: 0, y: 30 },
+                        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }
+                    );
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
         
-        // مراقبة عناصر التايم لاين
-        const timelineItems = document.querySelectorAll('.timeline-item');
-        timelineItems.forEach(item => observer.observe(item));
-    }
-    
-    // دالة لاسترداد متغيرات CSS
-    function getCssVariable(variable) {
-        return getComputedStyle(document.documentElement).getPropertyValue(variable);
+        // مراقبة الأقسام الرئيسية
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
     }
 });
