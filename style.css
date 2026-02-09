@@ -1,27 +1,28 @@
+/* ===== متغيرات التصميم ===== */
 :root {
-    /* الألوان الأساسية */
-    --dark-color: #0c0b13;
-    --dark-secondary: #1a1a2e;
-    --gold-color: #d4af37;
-    --gold-light: #f4e8c1;
-    --gold-dark: #b8941f;
-    --white-color: #ffffff;
-    --white-secondary: #f5f5f5;
-    --green-color: #1a5d1a;
-    --green-light: #2e8b57;
-    --red-color: #b30000;
-    --red-light: #ff3333;
-    
     /* الألوان الرمضانية */
+    --ramadan-dark: #0a1929;
     --ramadan-blue: #0a3d62;
     --ramadan-teal: #079992;
+    --ramadan-green: #1a5d1a;
+    --ramadan-gold: #d4af37;
+    --ramadan-gold-light: #f4e8c1;
+    --ramadan-red: #b30000;
+    --ramadan-red-light: #ff3333;
     --ramadan-purple: #6a1b9a;
     
+    /* الألوان المحايدة */
+    --white: #ffffff;
+    --white-secondary: #f5f5f5;
+    --black: #000000;
+    --dark-gray: #1a1a1a;
+    --light-gray: #e0e0e0;
+    
     /* الظلال */
-    --shadow-light: rgba(212, 175, 55, 0.1);
-    --shadow-medium: rgba(0, 0, 0, 0.3);
-    --shadow-dark: rgba(0, 0, 0, 0.5);
-    --shadow-gold: rgba(212, 175, 55, 0.3);
+    --shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 5px 20px rgba(0, 0, 0, 0.2);
+    --shadow-heavy: 0 10px 40px rgba(0, 0, 0, 0.3);
+    --shadow-gold: 0 0 20px rgba(212, 175, 55, 0.5);
     
     /* التحولات */
     --transition-fast: all 0.3s ease;
@@ -29,20 +30,20 @@
     --transition-slow: all 0.8s ease;
     
     /* الزوايا */
-    --radius-small: 10px;
+    --radius-small: 8px;
     --radius-medium: 15px;
     --radius-large: 25px;
     --radius-circle: 50%;
     
     /* المسافات */
-    --space-xs: 0.5rem;
-    --space-sm: 1rem;
-    --space-md: 1.5rem;
-    --space-lg: 2rem;
-    --space-xl: 3rem;
+    --space-xs: 5px;
+    --space-sm: 10px;
+    --space-md: 20px;
+    --space-lg: 30px;
+    --space-xl: 50px;
 }
 
-/* Reset وإعدادات عامة */
+/* ===== Reset وإعدادات عامة ===== */
 * {
     margin: 0;
     padding: 0;
@@ -50,135 +51,211 @@
 }
 
 html {
+    font-size: 16px;
     scroll-behavior: smooth;
 }
 
 body {
     font-family: 'Cairo', 'El Messiri', sans-serif;
-    background-color: var(--dark-color);
-    color: var(--white-color);
+    background-color: var(--ramadan-dark);
+    color: var(--white);
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
-    transition: var(--transition-medium);
+    position: relative;
 }
 
-body.lantern-mode {
-    background-color: var(--dark-secondary);
-    background-image: 
-        radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
-        radial-gradient(circle at 90% 80%, rgba(26, 93, 26, 0.05) 0%, transparent 20%);
+body.night-mode {
+    background: linear-gradient(135deg, #0a1929 0%, #1a1a2e 100%);
 }
 
-/* خلفية متحركة رمضانية واقعية */
-.background-animation {
+/* ===== الخلفية الرمضانية المتحركة ===== */
+.ramadan-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
+    overflow: hidden;
     pointer-events: none;
 }
 
-.star {
+/* القمر العائم */
+.floating-moon {
     position: absolute;
-    width: 2px;
-    height: 2px;
-    background-color: var(--white-color);
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at 30% 30%, var(--ramadan-gold-light) 0%, transparent 70%);
     border-radius: 50%;
-    animation: twinkle 3s infinite alternate;
-}
-
-.star-large {
-    width: 3px;
-    height: 3px;
-    box-shadow: 0 0 8px var(--white-color);
-}
-
-.ramadan-star {
-    width: 4px;
-    height: 4px;
-    background-color: var(--gold-light);
-    box-shadow: 0 0 12px var(--gold-color);
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 1; }
-}
-
-/* هلال رمضان واقعي */
-.real-crescent {
-    position: absolute;
-    width: 120px;
-    height: 120px;
-    background: radial-gradient(circle at 30px 30px, var(--gold-light) 0%, var(--gold-color) 40%, transparent 70%);
-    border-radius: 50%;
-    box-shadow: 
-        0 0 40px var(--gold-color),
-        inset 0 0 20px rgba(255, 255, 255, 0.3);
+    top: 10%;
+    left: 10%;
+    box-shadow: 0 0 30px var(--ramadan-gold);
     animation: floatMoon 20s infinite ease-in-out;
 }
 
 @keyframes floatMoon {
-    0%, 100% { 
-        transform: translateY(0px) rotate(0deg); 
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
     }
-    50% { 
-        transform: translateY(-30px) rotate(10deg); 
+    33% {
+        transform: translateY(-30px) rotate(120deg);
+    }
+    66% {
+        transform: translateY(15px) rotate(240deg);
     }
 }
 
-/* فانوس رمضان تقليدي */
+/* النجوم العائمة */
+.floating-star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background-color: var(--white);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--white);
+    animation: twinkle 3s infinite alternate;
+}
+
+.star1 { top: 20%; left: 80%; animation-delay: 0s; }
+.star2 { top: 40%; left: 20%; animation-delay: 1s; width: 3px; height: 3px; }
+.star3 { top: 60%; left: 70%; animation-delay: 2s; width: 5px; height: 5px; }
+.star4 { top: 80%; left: 30%; animation-delay: 1.5s; }
+
+@keyframes twinkle {
+    0% { opacity: 0.2; transform: scale(1); }
+    100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ===== تصميم الفانوس الرمضاني الواقعي ===== */
 .traditional-lantern {
     position: absolute;
     width: 60px;
-    height: 100px;
-    background: linear-gradient(135deg, var(--red-color) 0%, var(--red-light) 100%);
-    border-radius: 5px 5px 30px 30px;
+    height: 90px;
     animation: swingLantern 15s infinite ease-in-out;
+}
+
+.lantern1 { top: 15%; left: 10%; animation-delay: 0s; }
+.lantern2 { top: 25%; left: 80%; animation-delay: 2s; }
+.lantern3 { top: 60%; left: 15%; animation-delay: 4s; }
+.lantern4 { top: 70%; left: 85%; animation-delay: 6s; }
+
+.traditional-lantern::before,
+.traditional-lantern::after {
+    content: '';
+    position: absolute;
+    background: var(--ramadan-gold);
+    border-radius: 3px;
+}
+
+.traditional-lantern::before {
+    top: -8px;
+    left: -10px;
+    width: 80px;
+    height: 10px;
+}
+
+.traditional-lantern::after {
+    bottom: -8px;
+    left: -10px;
+    width: 80px;
+    height: 10px;
+}
+
+.traditional-lantern .lantern-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--ramadan-red) 0%, var(--ramadan-red-light) 100%);
+    border-radius: 5px;
     box-shadow: 
-        0 0 30px rgba(179, 0, 0, 0.5),
-        inset 0 -10px 20px rgba(0, 0, 0, 0.3);
+        inset 0 0 20px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(179, 0, 0, 0.6);
+    overflow: hidden;
 }
 
-.traditional-lantern:before {
+.traditional-lantern .lantern-body::before {
     content: '';
     position: absolute;
-    top: -15px;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px solid var(--ramadan-gold);
+    border-radius: 3px;
+    opacity: 0.5;
+}
+
+.traditional-lantern .lantern-body::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 40px;
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.2), transparent);
+    border-radius: 2px;
+}
+
+.traditional-lantern .lantern-light {
+    position: absolute;
+    bottom: -20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 70px;
+    width: 20px;
     height: 20px;
-    background-color: var(--gold-color);
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.traditional-lantern:after {
-    content: '';
-    position: absolute;
-    bottom: -25px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 40px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--gold-color) 0%, var(--gold-dark) 100%);
+    background: radial-gradient(circle, var(--ramadan-gold) 0%, transparent 70%);
     border-radius: 50%;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 30px var(--ramadan-gold);
+    animation: flicker 2s infinite alternate;
 }
 
 @keyframes swingLantern {
-    0%, 100% { 
-        transform: rotate(-5deg); 
+    0%, 100% {
+        transform: rotate(-5deg);
     }
-    50% { 
-        transform: rotate(5deg); 
+    50% {
+        transform: rotate(5deg);
     }
 }
 
-/* صفحة الدخول */
+@keyframes flicker {
+    0%, 100% {
+        opacity: 0.8;
+        transform: translateX(-50%) scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.1);
+    }
+}
+
+/* النجوم المتلألئة */
+.twinkling-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 90px 40px, #ddd, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, #eee, rgba(0,0,0,0));
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    animation: twinkleBg 5s infinite alternate;
+}
+
+@keyframes twinkleBg {
+    0% { opacity: 0.2; }
+    100% { opacity: 0.8; }
+}
+
+/* ===== صفحة الدخول ===== */
 .login-page {
     position: fixed;
     top: 0;
@@ -188,51 +265,66 @@ body.lantern-mode {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, var(--dark-color) 0%, var(--dark-secondary) 100%);
+    background: linear-gradient(135deg, rgba(10, 25, 41, 0.95) 0%, rgba(10, 61, 98, 0.95) 100%);
     z-index: 1000;
     padding: var(--space-md);
+    transition: var(--transition-medium);
+}
+
+.login-page.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .login-container {
     width: 100%;
-    max-width: 500px;
+    max-width: 450px;
+    animation: fadeInUp 0.8s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .login-box {
-    background: rgba(12, 11, 19, 0.95);
+    background: rgba(26, 29, 41, 0.9);
     backdrop-filter: blur(10px);
     border-radius: var(--radius-large);
     padding: var(--space-xl);
-    width: 100%;
-    border: 2px solid var(--gold-color);
+    border: 2px solid var(--ramadan-gold);
     box-shadow: 
-        0 20px 40px var(--shadow-dark),
-        0 0 30px var(--shadow-gold);
+        var(--shadow-heavy),
+        0 0 50px rgba(212, 175, 55, 0.2);
     text-align: center;
-    transition: var(--transition-medium);
     position: relative;
     overflow: hidden;
 }
 
-.login-box:before {
+.login-box::before {
     content: '';
     position: absolute;
     top: -50%;
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, var(--shadow-gold) 0%, transparent 70%);
-    opacity: 0.1;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
     animation: rotate 20s linear infinite;
+}
+
+.login-box.shake {
+    animation: shake 0.5s ease-in-out;
 }
 
 @keyframes rotate {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-
-.login-box.shake {
-    animation: shake 0.5s ease-in-out;
 }
 
 @keyframes shake {
@@ -241,35 +333,104 @@ body.lantern-mode {
     20%, 40%, 60%, 80% { transform: translateX(10px); }
 }
 
-.moon-illustration {
-    margin-bottom: var(--space-lg);
-    display: flex;
-    justify-content: center;
+/* فانوس الديكور في صفحة الدخول */
+.lantern-decoration {
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 90px;
 }
 
-.crescent-moon {
-    width: 100px;
-    height: 100px;
-    background: radial-gradient(circle at 30px 30px, var(--gold-light) 0%, transparent 70%);
-    border-radius: 50%;
+.lantern-top {
+    position: absolute;
+    top: -5px;
+    left: -10px;
+    width: 80px;
+    height: 10px;
+    background: var(--ramadan-gold);
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.lantern-body {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(45deg, var(--ramadan-red) 0%, #ff5252 100%);
+    border-radius: 5px;
     box-shadow: 
-        0 0 30px var(--gold-color),
-        inset 0 0 20px rgba(255, 255, 255, 0.2);
-    animation: pulseMoon 3s infinite ease-in-out;
+        inset 0 0 20px rgba(0, 0, 0, 0.5),
+        0 0 30px rgba(179, 0, 0, 0.6);
+    overflow: hidden;
 }
 
-@keyframes pulseMoon {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+.lantern-pattern {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 2px solid var(--ramadan-gold);
+    border-radius: 3px;
+    opacity: 0.5;
+}
+
+.lantern-light {
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, var(--ramadan-gold) 0%, transparent 70%);
+    border-radius: 50%;
+    box-shadow: 0 0 30px var(--ramadan-gold);
+    animation: lanternGlow 2s infinite alternate;
+}
+
+@keyframes lanternGlow {
+    0% {
+        opacity: 0.7;
+        box-shadow: 0 0 20px var(--ramadan-gold);
+    }
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 40px var(--ramadan-gold);
+    }
+}
+
+.lantern-bottom {
+    position: absolute;
+    bottom: -10px;
+    left: -10px;
+    width: 80px;
+    height: 10px;
+    background: var(--ramadan-gold);
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.lantern-tassel {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 20px;
+    background: linear-gradient(to bottom, var(--ramadan-gold), var(--ramadan-red));
+    border-radius: 2px;
 }
 
 .welcome-title {
     font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
-    color: var(--gold-color);
-    margin-bottom: var(--space-md);
-    line-height: 1.3;
-    text-shadow: 0 2px 10px var(--shadow-gold);
+    font-size: 2.8rem;
+    color: var(--ramadan-gold);
+    margin: var(--space-lg) 0 var(--space-md);
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.5);
 }
 
 .welcome-message {
@@ -282,16 +443,30 @@ body.lantern-mode {
 
 .input-group {
     position: relative;
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-lg);
+}
+
+.input-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 24px;
+    height: 24px;
+    background: var(--ramadan-gold);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
 }
 
 .password-input {
     width: 100%;
-    padding: 18px 50px 18px 20px;
+    padding: 15px 45px 15px 15px;
     background: rgba(255, 255, 255, 0.08);
     border: 2px solid rgba(212, 175, 55, 0.3);
     border-radius: var(--radius-medium);
-    color: var(--white-color);
+    color: var(--white);
     font-size: 1.1rem;
     font-family: 'Cairo', sans-serif;
     transition: var(--transition-fast);
@@ -299,71 +474,63 @@ body.lantern-mode {
 
 .password-input:focus {
     outline: none;
-    border-color: var(--gold-color);
-    box-shadow: 0 0 20px var(--shadow-gold);
+    border-color: var(--ramadan-gold);
+    box-shadow: var(--shadow-gold);
     background: rgba(255, 255, 255, 0.12);
 }
 
-.input-icon {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--gold-color);
-    font-size: 1.2rem;
-}
-
 .password-hint {
-    font-size: 0.95rem;
-    color: var(--gold-light);
-    margin-bottom: var(--space-xl);
+    font-size: 0.9rem;
+    color: var(--ramadan-gold-light);
+    margin-bottom: var(--space-lg);
     opacity: 0.8;
 }
 
 .submit-btn {
-    background: linear-gradient(135deg, var(--green-color) 0%, var(--gold-color) 100%);
-    color: var(--white-color);
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--ramadan-green) 0%, var(--ramadan-gold) 100%);
     border: none;
-    padding: 18px 40px;
     border-radius: var(--radius-medium);
+    color: var(--white);
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition-medium);
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-xs);
+    gap: var(--space-sm);
     position: relative;
     overflow: hidden;
 }
 
 .submit-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(26, 93, 26, 0.4);
+    box-shadow: 0 10px 25px rgba(26, 93, 26, 0.4);
 }
 
 .submit-btn:active {
     transform: translateY(0);
 }
 
-.btn-text {
-    font-family: 'Cairo', sans-serif;
-}
-
 .btn-icon {
-    font-size: 1.2rem;
+    width: 20px;
+    height: 20px;
+    background: var(--white);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
 }
 
-.message-container {
+.messages {
     margin-top: var(--space-lg);
     min-height: 50px;
 }
 
 .error-message {
     color: #ff6b6b;
-    font-size: 1.1rem;
     padding: var(--space-sm);
     background: rgba(255, 107, 107, 0.1);
     border-radius: var(--radius-small);
@@ -372,8 +539,7 @@ body.lantern-mode {
 }
 
 .success-message {
-    color: var(--gold-color);
-    font-size: 1.2rem;
+    color: var(--ramadan-gold);
     padding: var(--space-sm);
     background: rgba(212, 175, 55, 0.1);
     border-radius: var(--radius-small);
@@ -381,11 +547,11 @@ body.lantern-mode {
     display: none;
 }
 
-/* الصفحة الرئيسية */
+/* ===== الصفحة الرئيسية ===== */
 .main-page {
     display: none;
     opacity: 0;
-    transition: opacity 1s ease;
+    transition: opacity 0.8s ease;
     min-height: 100vh;
 }
 
@@ -395,214 +561,479 @@ body.lantern-mode {
     opacity: 1;
 }
 
-/* الهيدر وعداد رمضان */
-.header {
-    background: rgba(12, 11, 19, 0.9);
+/* ===== الهيدر ===== */
+.main-header {
+    background: rgba(10, 25, 41, 0.9);
     backdrop-filter: blur(10px);
+    border-bottom: 2px solid rgba(212, 175, 55, 0.2);
     padding: var(--space-md);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-md);
     position: sticky;
     top: 0;
     z-index: 100;
+    height: 70px;
 }
 
-.ramadan-counter-container {
-    width: 100%;
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
 }
 
-.ramadan-counter {
-    background: linear-gradient(135deg, rgba(26, 93, 26, 0.15) 0%, rgba(212, 175, 55, 0.15) 100%);
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 1.5rem;
+    color: var(--ramadan-gold);
+    font-family: 'Dancing Script', cursive;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--ramadan-gold);
+    border-radius: 50%;
+    position: relative;
+    animation: moonFloat 4s infinite ease-in-out;
+}
+
+.logo-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background: var(--ramadan-dark);
+    border-radius: 50%;
+}
+
+.header-actions {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.theme-toggle-btn {
+    background: rgba(212, 175, 55, 0.1);
+    border: 2px solid var(--ramadan-gold);
+    color: var(--ramadan-gold);
+    padding: 8px 20px;
+    border-radius: var(--radius-medium);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.theme-toggle-btn:hover {
+    background: rgba(212, 175, 55, 0.2);
+    transform: scale(1.05);
+}
+
+.theme-icon {
+    width: 16px;
+    height: 16px;
+    background: var(--ramadan-gold);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3a9 9 0 109 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 01-4.4 2.26 5.403 5.403 0 01-3.14-9.8c-.44-.06-.9-.1-1.36-.1z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 3a9 9 0 109 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 01-4.4 2.26 5.403 5.403 0 01-3.14-9.8c-.44-.06-.9-.1-1.36-.1z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+}
+
+/* ===== عدّاد رمضان ===== */
+.ramadan-countdown-section {
+    background: linear-gradient(135deg, 
+        rgba(10, 61, 98, 0.85) 0%, 
+        rgba(26, 93, 26, 0.85) 100%);
     border-radius: var(--radius-large);
     padding: var(--space-lg);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    box-shadow: 0 10px 30px var(--shadow-dark);
-}
-
-.counter-header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-sm);
-    margin-bottom: var(--space-lg);
-}
-
-.counter-icon {
-    color: var(--gold-color);
-    font-size: 1.5rem;
-}
-
-.counter-title {
-    font-size: 1.5rem;
-    color: var(--gold-color);
-    font-weight: 600;
-}
-
-.counter-display {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: var(--space-sm);
-    margin-bottom: var(--space-lg);
-    flex-wrap: wrap;
-}
-
-.counter-item {
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: var(--radius-medium);
-    padding: var(--space-sm);
-    min-width: 80px;
-    text-align: center;
-    border: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.counter-value {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--gold-color);
-    font-family: 'Cairo', monospace;
-    margin-bottom: var(--space-xs);
-    text-shadow: 0 0 10px var(--shadow-gold);
-    animation: countPulse 1s infinite alternate;
-}
-
-@keyframes countPulse {
-    0% { opacity: 0.8; }
-    100% { opacity: 1; }
-}
-
-.counter-label {
-    font-size: 0.9rem;
-    color: var(--white-secondary);
-    opacity: 0.8;
-}
-
-.counter-separator {
-    font-size: 1.8rem;
-    color: var(--gold-color);
-    font-weight: bold;
-    margin: 0 var(--space-xs);
-}
-
-.counter-status {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-xs);
-    margin-bottom: var(--space-lg);
-    padding: var(--space-sm);
-    background: rgba(212, 175, 55, 0.1);
-    border-radius: var(--radius-medium);
-    border: 1px solid rgba(212, 175, 55, 0.2);
-}
-
-.status-icon {
-    color: var(--gold-color);
-}
-
-#statusText {
-    font-size: 1.1rem;
-    color: var(--gold-light);
-}
-
-.moon-progress-container {
-    display: flex;
-    justify-content: center;
-}
-
-.moon-progress {
+    margin: var(--space-lg) auto;
+    max-width: 1200px;
+    border: 3px solid var(--ramadan-gold);
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.4),
+        0 0 50px rgba(212, 175, 55, 0.2);
     position: relative;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.ramadan-countdown-section:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, 
+        rgba(212, 175, 55, 0.1) 0%, 
+        transparent 70%);
+    animation: rotateSlow 20s linear infinite;
+    z-index: -1;
+}
+
+.countdown-container {
+    position: relative;
+    z-index: 2;
+}
+
+.countdown-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.moon-icon {
+    position: relative;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    margin-bottom: var(--space-md);
+}
+
+.moon-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 120px;
     height: 120px;
+    background: radial-gradient(circle, 
+        rgba(212, 175, 55, 0.4) 0%, 
+        transparent 70%);
+    border-radius: 50%;
+    animation: glowPulse 3s infinite alternate;
 }
 
-.moon-progress svg {
-    width: 100%;
-    height: 100%;
-    transform: rotate(-90deg);
-}
-
-.moon-track {
-    fill: none;
-    stroke: rgba(255, 255, 255, 0.1);
-    stroke-width: 6;
-}
-
-.moon-progress-circle {
-    fill: none;
-    stroke: var(--gold-color);
-    stroke-width: 6;
-    stroke-linecap: round;
-    stroke-dasharray: 283;
-    stroke-dashoffset: 283;
-    transition: stroke-dashoffset 1s ease;
-    filter: drop-shadow(0 0 10px var(--gold-color));
-}
-
-.moon-fill {
+.moon-crescent {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 80px;
     height: 80px;
-    background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+    background: radial-gradient(circle at 30% 30%, 
+        var(--ramadan-gold-light) 0%, 
+        transparent 70%);
     border-radius: 50%;
+    box-shadow: 0 0 30px var(--ramadan-gold);
+    animation: moonFloat 4s infinite ease-in-out;
 }
 
-/* زر تبديل السمة */
-.theme-toggle {
-    align-self: center;
-    background: rgba(212, 175, 55, 0.1);
-    border: 2px solid var(--gold-color);
-    color: var(--gold-color);
-    padding: 12px 25px;
-    border-radius: var(--radius-medium);
-    font-size: 1rem;
-    cursor: pointer;
-    transition: var(--transition-fast);
+.countdown-header h2 {
+    font-size: 1.8rem;
+    color: var(--ramadan-gold);
+    margin-bottom: var(--space-xs);
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-sm);
-    max-width: 200px;
 }
 
-.theme-toggle:hover {
-    background: rgba(212, 175, 55, 0.2);
-    transform: scale(1.05);
+.header-icon {
+    width: 24px;
+    height: 24px;
+    background: var(--ramadan-gold);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
 }
 
-.theme-icon {
-    font-size: 1.2rem;
+.countdown-subtitle {
+    font-size: 1.1rem;
+    color: var(--white-secondary);
+    opacity: 0.9;
 }
 
-.theme-text {
-    font-family: 'Cairo', sans-serif;
+/* أرقام العداد */
+.countdown-main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+    flex-wrap: wrap;
 }
 
-/* مشغل الصوت الثابت */
-.audio-player-fixed {
+.countdown-item {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: var(--radius-medium);
+    padding: var(--space-lg);
+    min-width: 100px;
+    text-align: center;
+    border: 2px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-item:hover {
+    border-color: var(--ramadan-gold);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(212, 175, 55, 0.2);
+}
+
+.countdown-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--ramadan-gold);
+    font-family: 'Cairo', monospace;
+    margin-bottom: var(--space-xs);
+    text-shadow: 0 0 15px var(--ramadan-gold);
+    animation: numberPulse 1s infinite alternate;
+}
+
+.countdown-label {
+    font-size: 1rem;
+    color: var(--white-secondary);
+    margin-bottom: var(--space-md);
+    opacity: 0.9;
+    font-weight: 600;
+}
+
+.countdown-progress {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        var(--ramadan-green), 
+        var(--ramadan-gold));
+    border-radius: 3px;
+    width: 0%;
+    transition: width 1s ease;
+}
+
+.countdown-separator {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--ramadan-gold);
+    margin: 0 var(--space-xs);
+    animation: separatorBlink 2s infinite;
+}
+
+/* مراحل القمر */
+.moon-phase-container {
+    margin-bottom: var(--space-xl);
+}
+
+.moon-phase {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xl);
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-large);
+    padding: var(--space-lg);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.moon-visual {
+    flex-shrink: 0;
+}
+
+.moon-shape {
+    width: 120px;
+    height: 120px;
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: 50%;
+    border: 3px solid var(--ramadan-gold);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+}
+
+.moon-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        rgba(212, 175, 55, 0.8), 
+        rgba(212, 175, 55, 0.4));
+    width: 0%;
+    transition: width 2s ease;
+}
+
+.moon-info {
+    flex: 1;
+}
+
+.moon-text {
+    display: block;
+    font-size: 1.3rem;
+    color: var(--ramadan-gold);
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+}
+
+.moon-progress-bar {
+    height: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.moon-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        #0a3d62, 
+        var(--ramadan-green), 
+        var(--ramadan-gold));
+    border-radius: 5px;
+    width: 0%;
+    transition: width 2s ease;
+}
+
+/* حالة العد التنازلي */
+.countdown-status {
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: var(--radius-medium);
+    padding: var(--space-lg);
+    border: 2px solid rgba(212, 175, 55, 0.2);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.status-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+}
+
+.status-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--ramadan-gold);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+    animation: starRotate 10s infinite linear;
+}
+
+.status-text {
+    text-align: right;
+}
+
+.status-title {
+    font-size: 1.4rem;
+    color: var(--ramadan-gold);
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.status-message {
+    font-size: 1.1rem;
+    color: var(--white-secondary);
+    opacity: 0.9;
+}
+
+/* أنيميشن جديدة */
+@keyframes numberPulse {
+    0% { 
+        text-shadow: 0 0 10px var(--ramadan-gold); 
+        transform: scale(1);
+    }
+    100% { 
+        text-shadow: 0 0 25px var(--ramadan-gold), 
+                    0 0 35px rgba(212, 175, 55, 0.5); 
+        transform: scale(1.05);
+    }
+}
+
+@keyframes separatorBlink {
+    0%, 100% { 
+        opacity: 1; 
+        text-shadow: 0 0 10px var(--ramadan-gold);
+    }
+    50% { 
+        opacity: 0.5; 
+        text-shadow: none;
+    }
+}
+
+@keyframes moonFloat {
+    0%, 100% { 
+        transform: translate(-50%, -50%) scale(1); 
+    }
+    50% { 
+        transform: translate(-50%, -50%) scale(1.05); 
+    }
+}
+
+@keyframes glowPulse {
+    0% { 
+        opacity: 0.3; 
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% { 
+        opacity: 0.6; 
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+}
+
+@keyframes starRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes rotateSlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* تأثيرات خاصة لرمضان */
+.ramadan-started .countdown-number {
+    animation: ramadanPulse 1.5s infinite alternate;
+}
+
+@keyframes ramadanPulse {
+    0% { 
+        color: var(--ramadan-gold);
+        text-shadow: 0 0 15px var(--ramadan-gold);
+    }
+    100% { 
+        color: #ffd700;
+        text-shadow: 0 0 30px #ffd700, 0 0 50px rgba(255, 215, 0, 0.5);
+    }
+}
+
+/* ===== مشغل الصوت ===== */
+.audio-player {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: rgba(12, 11, 19, 0.95);
+    background: rgba(10, 25, 41, 0.95);
     backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
-    z-index: 100;
+    border-top: 2px solid rgba(212, 175, 55, 0.2);
+    z-index: 90;
     padding: var(--space-sm);
     transform: translateY(100%);
     transition: transform 0.5s ease;
 }
 
-.audio-player-fixed.active {
+.audio-player.active {
     transform: translateY(0);
 }
 
-.audio-container {
-    max-width: 1200px;
+.player-container {
+    max-width: 800px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -610,45 +1041,51 @@ body.lantern-mode {
     flex-wrap: wrap;
 }
 
-.audio-control-btn {
+.play-btn {
     width: 50px;
     height: 50px;
-    border-radius: var(--radius-circle);
-    background: linear-gradient(135deg, var(--green-color) 0%, var(--gold-color) 100%);
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--ramadan-green), var(--ramadan-gold));
     border: none;
-    color: var(--white-color);
-    font-size: 1.2rem;
     cursor: pointer;
     transition: var(--transition-fast);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-shrink: 0;
 }
 
-.audio-control-btn:hover {
+.play-btn:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 20px var(--shadow-gold);
+    box-shadow: var(--shadow-gold);
 }
 
-.audio-info {
+.play-icon {
+    width: 24px;
+    height: 24px;
+    margin: 0 auto;
+    background: var(--white);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+}
+
+.track-info {
     flex: 1;
     min-width: 200px;
 }
 
-.audio-title {
+.track-title {
     font-size: 1.1rem;
-    color: var(--gold-light);
+    color: var(--ramadan-gold);
     margin-bottom: var(--space-xs);
 }
 
-.audio-time {
+.track-time {
     font-size: 0.9rem;
     color: var(--white-secondary);
     opacity: 0.8;
 }
 
-.audio-controls {
+.player-controls {
     flex: 2;
     display: flex;
     flex-direction: column;
@@ -656,8 +1093,8 @@ body.lantern-mode {
     min-width: 300px;
 }
 
-.progress-slider,
-.volume-slider {
+.progress-bar,
+.volume-bar {
     width: 100%;
     height: 6px;
     -webkit-appearance: none;
@@ -668,16 +1105,16 @@ body.lantern-mode {
     cursor: pointer;
 }
 
-.progress-slider::-webkit-slider-thumb,
-.volume-slider::-webkit-slider-thumb {
+.progress-bar::-webkit-slider-thumb,
+.volume-bar::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: var(--gold-color);
+    background: var(--ramadan-gold);
     cursor: pointer;
-    border: 2px solid var(--white-color);
+    border: 2px solid var(--white);
 }
 
 .volume-control {
@@ -687,67 +1124,104 @@ body.lantern-mode {
 }
 
 .volume-icon {
-    color: var(--gold-color);
-    font-size: 1.2rem;
+    width: 24px;
+    height: 24px;
+    background: var(--ramadan-gold);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
 }
 
-/* المحتوى الرئيسي */
+/* ===== المحتوى الرئيسي ===== */
 .main-content {
     flex: 1;
     padding: var(--space-lg);
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     width: 100%;
 }
 
-/* الأقسام العامة */
-.section-header {
+/* الأقسام المتحركة */
+.animated-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animated-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* عناوين الأقسام */
+.section-title {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-sm);
-    margin-bottom: var(--space-xl);
+    gap: var(--space-md);
+    margin: var(--space-xl) 0 var(--space-lg);
     text-align: center;
 }
 
 .section-icon {
-    color: var(--gold-color);
-    font-size: 1.5rem;
+    width: 32px;
+    height: 32px;
+    background: var(--ramadan-gold);
 }
 
-.section-title {
+.envelope-icon {
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+}
+
+.heart-icon {
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+}
+
+.images-icon {
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+}
+
+.video-icon {
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 8v8l5-4-5-4zm9-5H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 8v8l5-4-5-4zm9-5H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+}
+
+.gift-icon {
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+}
+
+.section-title h2 {
     font-family: 'Dancing Script', cursive;
     font-size: 2.5rem;
-    color: var(--gold-color);
-    text-align: center;
-    position: relative;
+    color: var(--ramadan-gold);
+    text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
 }
 
-.section-title:after {
-    content: '';
-    position: absolute;
-    width: 150px;
-    height: 3px;
-    background: linear-gradient(to right, transparent, var(--gold-color), transparent);
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-/* دعوة ليك - محسنة */
-.invitation-section {
-    margin-bottom: var(--space-xl);
-}
-
+/* ===== دعوة ليك ===== */
 .invitation-card {
     background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(26, 93, 26, 0.1));
     border-radius: var(--radius-large);
     overflow: hidden;
-    border: 2px solid var(--gold-color);
-    box-shadow: 0 20px 40px var(--shadow-dark);
-    transition: var(--transition-medium);
+    border: 2px solid var(--ramadan-gold);
+    box-shadow: var(--shadow-heavy);
     max-width: 800px;
     margin: 0 auto;
+    transition: var(--transition-medium);
 }
 
 .invitation-card:hover {
@@ -760,25 +1234,45 @@ body.lantern-mode {
     padding: var(--space-lg);
     text-align: center;
     border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
 }
 
-.invitation-icon {
-    font-size: 2.5rem;
-    color: var(--gold-color);
-    margin-bottom: var(--space-sm);
+.lantern-small {
+    width: 30px;
+    height: 45px;
+    background: linear-gradient(var(--ramadan-red), var(--ramadan-red-light));
+    border-radius: 3px;
+    position: relative;
 }
 
-.invitation-title {
+.lantern-small::before,
+.lantern-small::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 5px;
+    background: var(--ramadan-gold);
+    left: -5px;
+    border-radius: 3px;
+}
+
+.lantern-small::before { top: 0; }
+.lantern-small::after { bottom: 0; }
+
+.invitation-header h3 {
     font-family: 'Dancing Script', cursive;
     font-size: 2rem;
-    color: var(--gold-color);
+    color: var(--ramadan-gold);
 }
 
 .invitation-body {
     padding: var(--space-xl);
 }
 
-.invitation-text-container {
+.message-container {
     min-height: 200px;
     max-height: 400px;
     overflow-y: auto;
@@ -790,44 +1284,47 @@ body.lantern-mode {
     position: relative;
 }
 
-.invitation-text {
+.message-text {
     font-size: 1.2rem;
     line-height: 1.8;
     color: var(--white-secondary);
     white-space: pre-line;
-    min-height: 150px;
     opacity: 0;
-    animation: fadeInText 0.5s ease forwards;
 }
 
-@keyframes fadeInText {
-    to { opacity: 1; }
-}
-
-.typing-cursor {
-    display: inline-block;
-    width: 3px;
-    height: 1.2em;
-    background-color: var(--gold-color);
-    animation: blinkCursor 0.7s infinite;
-    vertical-align: middle;
-    margin-left: 2px;
-}
-
-@keyframes blinkCursor {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-.invitation-footer {
+.typing-indicator {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
     display: flex;
-    justify-content: center;
+    gap: 5px;
 }
 
-.close-btn {
+.typing-indicator span {
+    width: 8px;
+    height: 8px;
+    background: var(--ramadan-gold);
+    border-radius: 50%;
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.close-message-btn {
     background: rgba(212, 175, 55, 0.1);
-    border: 1px solid var(--gold-color);
-    color: var(--white-color);
+    border: 1px solid var(--ramadan-gold);
+    color: var(--white);
     padding: 12px 30px;
     border-radius: var(--radius-medium);
     font-size: 1rem;
@@ -836,32 +1333,36 @@ body.lantern-mode {
     display: flex;
     align-items: center;
     gap: var(--space-xs);
+    margin: 0 auto;
 }
 
-.close-btn:hover {
+.close-message-btn:hover {
     background: rgba(212, 175, 55, 0.2);
     transform: scale(1.05);
 }
 
-/* الذكريات - Carousel محسن */
-.memories-section {
-    margin-bottom: var(--space-xl);
+.close-icon {
+    width: 16px;
+    height: 16px;
+    background: var(--white);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
 }
 
-.memories-container {
-    max-width: 1200px;
+/* ===== الذكريات ===== */
+.memories-slider-container {
+    max-width: 1000px;
     margin: 0 auto;
-}
-
-.memories-slider {
-    padding: var(--space-lg) 0;
 }
 
 .swiper {
     width: 100%;
-    height: 400px;
+    height: 350px;
     border-radius: var(--radius-large);
     overflow: hidden;
+    box-shadow: var(--shadow-heavy);
 }
 
 .swiper-slide {
@@ -874,60 +1375,53 @@ body.lantern-mode {
 
 .swiper-slide:hover {
     transform: scale(1.03);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
-.memory-image {
+.swiper-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
 
-.swiper-slide:hover .memory-image {
+.swiper-slide:hover img {
     transform: scale(1.1);
 }
 
-.memory-overlay {
+.swiper-slide .slide-overlay {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
     padding: var(--space-lg);
-    color: var(--white-color);
     transform: translateY(100%);
     transition: transform 0.5s ease;
 }
 
-.swiper-slide:hover .memory-overlay {
+.swiper-slide:hover .slide-overlay {
     transform: translateY(0);
 }
 
-.memory-title {
+.swiper-slide h3 {
     font-size: 1.3rem;
-    color: var(--gold-color);
-    font-weight: 600;
+    color: var(--ramadan-gold);
     margin-bottom: var(--space-xs);
 }
 
-.memory-date {
+.swiper-slide p {
     font-size: 0.9rem;
     color: var(--white-secondary);
     opacity: 0.8;
 }
 
-/* عناصر تحكم Swiper */
 .swiper-button-next,
 .swiper-button-prev {
     background: rgba(212, 175, 55, 0.8);
     width: 50px;
     height: 50px;
-    border-radius: var(--radius-circle);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white-color);
+    border-radius: 50%;
+    color: var(--white);
     transition: var(--transition-fast);
 }
 
@@ -938,45 +1432,49 @@ body.lantern-mode {
 
 .swiper-button-next:hover,
 .swiper-button-prev:hover {
-    background: var(--gold-color);
+    background: var(--ramadan-gold);
     transform: scale(1.1);
 }
 
+.arrow-icon {
+    width: 24px;
+    height: 24px;
+    margin: 0 auto;
+    background: var(--white);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+}
+
+.swiper-button-prev .arrow-icon {
+    transform: rotate(180deg);
+}
+
 .swiper-pagination-bullet {
-    background: var(--white-color);
+    background: var(--white);
     opacity: 0.5;
-    width: 12px;
-    height: 12px;
 }
 
 .swiper-pagination-bullet-active {
-    background: var(--gold-color);
+    background: var(--ramadan-gold);
     opacity: 1;
 }
 
-/* قسم الفيديو المحسن */
-.video-section {
-    margin-bottom: var(--space-xl);
-}
-
-.video-container {
-    max-width: 900px;
+/* ===== الفيديو ===== */
+.video-player-container {
+    max-width: 800px;
     margin: 0 auto;
-}
-
-.video-wrapper {
-    position: relative;
     border-radius: var(--radius-large);
     overflow: hidden;
-    box-shadow: 0 20px 40px var(--shadow-dark);
-    border: 3px solid var(--gold-color);
+    box-shadow: var(--shadow-heavy);
+    border: 3px solid var(--ramadan-gold);
 }
 
 .video-frame {
     position: relative;
-    padding-bottom: 56.25%; /* نسبة 16:9 */
-    height: 0;
-    background: var(--dark-color);
+    padding-bottom: 56.25%; /* 16:9 */
+    background: var(--ramadan-dark);
 }
 
 .video-frame video {
@@ -994,10 +1492,12 @@ body.lantern-mode {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: var(--space-lg);
     transition: opacity 0.3s ease;
 }
 
@@ -1006,198 +1506,200 @@ body.lantern-mode {
     pointer-events: none;
 }
 
-.video-controls {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-    padding: var(--space-md);
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
-
-.video-frame:hover .video-controls {
-    transform: translateY(0);
-}
-
-.video-play-btn {
-    align-self: center;
+.play-button-large {
+    width: 80px;
+    height: 80px;
     background: rgba(212, 175, 55, 0.9);
-    border: none;
-    padding: 15px 30px;
-    border-radius: var(--radius-medium);
-    color: var(--white-color);
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: var(--transition-fast);
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-fast);
 }
 
-.video-play-btn:hover {
-    background: var(--gold-color);
-    transform: scale(1.05);
+.play-button-large:hover {
+    background: var(--ramadan-gold);
+    transform: scale(1.1);
 }
 
-.play-icon {
-    font-size: 1.3rem;
+.play-large-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--white);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+}
+
+.video-title {
+    font-size: 1.5rem;
+    color: var(--white);
+    text-align: center;
+    padding: 0 var(--space-md);
+}
+
+.video-controls {
+    background: rgba(0, 0, 0, 0.8);
+    padding: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.video-control-btn {
+    width: 40px;
+    height: 40px;
+    background: var(--ramadan-gold);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.video-control-btn:hover {
+    transform: scale(1.1);
+}
+
+.video-play-icon {
+    width: 20px;
+    height: 20px;
+    margin: 0 auto;
+    background: var(--white);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
 }
 
 .video-progress {
-    width: 100%;
-}
-
-.video-progress-slider {
-    width: 100%;
+    flex: 1;
     height: 6px;
     -webkit-appearance: none;
     appearance: none;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 3px;
     outline: none;
+    cursor: pointer;
 }
 
-.video-progress-slider::-webkit-slider-thumb {
+.video-progress::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: var(--gold-color);
+    background: var(--ramadan-gold);
     cursor: pointer;
 }
 
-.video-decor {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+.video-time {
+    font-size: 0.9rem;
+    color: var(--white-secondary);
+    min-width: 100px;
+    text-align: center;
 }
 
-.lantern-decoration {
-    position: absolute;
-    top: 20px;
-    width: 60px;
-    height: 90px;
-}
-
-.lantern-decoration.left {
-    left: 20px;
-}
-
-.lantern-decoration.right {
-    right: 20px;
-}
-
-.lantern-body {
-    width: 100%;
-    height: 70px;
-    background: linear-gradient(to bottom, var(--red-color), var(--red-light));
-    border-radius: 5px;
-    position: relative;
-}
-
-.lantern-body:before,
-.lantern-body:after {
-    content: '';
-    position: absolute;
-    width: 120%;
-    height: 10px;
-    background: var(--gold-color);
-    left: -10%;
-    border-radius: 5px;
-}
-
-.lantern-body:before {
-    top: 0;
-}
-
-.lantern-body:after {
-    bottom: 0;
-}
-
-.lantern-light {
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 20px;
-    background: var(--gold-color);
-    border-radius: 50%;
-    box-shadow: 0 0 20px var(--gold-color);
-}
-
-/* زر المفاجأة */
-.surprise-section {
-    margin-bottom: var(--space-xl);
-}
-
+/* ===== المفاجأة ===== */
 .surprise-container {
     max-width: 600px;
     margin: 0 auto;
     text-align: center;
 }
 
-.surprise-btn {
-    background: linear-gradient(135deg, var(--red-color) 0%, var(--red-light) 100%);
+.surprise-button {
+    background: none;
     border: none;
-    padding: 25px 40px;
-    border-radius: var(--radius-large);
-    color: var(--white-color);
-    font-size: 1.3rem;
     cursor: pointer;
     transition: var(--transition-medium);
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-md);
-    box-shadow: 0 15px 30px rgba(179, 0, 0, 0.3);
+    display: inline-block;
+}
+
+.surprise-button:hover {
+    transform: translateY(-10px);
+}
+
+.gift-box {
     position: relative;
-    overflow: hidden;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto var(--space-md);
 }
 
-.surprise-btn:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 25px 40px rgba(179, 0, 0, 0.4);
+.gift-lid {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    width: 100px;
+    height: 30px;
+    background: linear-gradient(45deg, var(--ramadan-red), var(--ramadan-red-light));
+    border-radius: 5px;
+    transform-origin: center;
+    transition: transform 0.5s ease;
 }
 
-.surprise-btn:before {
+.gift-body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(45deg, var(--ramadan-red-light), var(--ramadan-red));
+    border-radius: 5px;
+}
+
+.gift-bow {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 40px;
+}
+
+.gift-bow::before,
+.gift-bow::after {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
-    animation: rotate 3s linear infinite;
+    width: 40px;
+    height: 40px;
+    background: var(--ramadan-gold);
+    border-radius: 50%;
 }
 
-.surprise-icon {
-    font-size: 2rem;
-    z-index: 1;
+.gift-bow::before { left: -20px; }
+.gift-bow::after { right: -20px; }
+
+.gift-bow .bow-center {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 20px;
+    background: var(--ramadan-gold);
+    border-radius: 10px 10px 0 0;
 }
 
 .surprise-text {
-    z-index: 1;
+    display: block;
+    font-size: 1.3rem;
+    color: var(--ramadan-gold);
+    font-weight: 600;
 }
 
 .surprise-message {
-    background: rgba(12, 11, 19, 0.95);
-    border: 2px solid var(--gold-color);
+    background: rgba(10, 25, 41, 0.95);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--ramadan-gold);
     border-radius: var(--radius-large);
     padding: var(--space-xl);
     margin-top: var(--space-lg);
     display: none;
     animation: fadeIn 0.5s ease;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 20px 40px var(--shadow-dark);
+    box-shadow: var(--shadow-heavy);
 }
 
 @keyframes fadeIn {
@@ -1205,36 +1707,42 @@ body.lantern-mode {
     to { opacity: 1; transform: translateY(0); }
 }
 
-.surprise-header {
+.message-header {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--space-sm);
+    gap: var(--space-md);
     margin-bottom: var(--space-lg);
 }
 
-.surprise-star {
-    color: var(--gold-color);
-    font-size: 1.5rem;
-    animation: starPulse 2s infinite;
+.star-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--ramadan-gold);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+    animation: starTwinkle 2s infinite;
 }
 
-@keyframes starPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
 }
 
-.surprise-header h3 {
+.message-header h3 {
     font-family: 'Dancing Script', cursive;
     font-size: 2rem;
-    color: var(--gold-color);
+    color: var(--ramadan-gold);
 }
 
-.surprise-content {
+.message-content {
     margin-bottom: var(--space-lg);
+    text-align: right;
 }
 
-.surprise-content p {
+.message-content p {
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--white-secondary);
@@ -1242,11 +1750,11 @@ body.lantern-mode {
 }
 
 .close-surprise-btn {
-    background: linear-gradient(135deg, var(--green-color) 0%, var(--gold-color) 100%);
+    background: linear-gradient(135deg, var(--ramadan-green), var(--ramadan-gold));
     border: none;
-    padding: 15px 30px;
+    padding: 12px 30px;
     border-radius: var(--radius-medium);
-    color: var(--white-color);
+    color: var(--white);
     font-size: 1.1rem;
     cursor: pointer;
     transition: var(--transition-fast);
@@ -1260,12 +1768,22 @@ body.lantern-mode {
     box-shadow: 0 10px 20px rgba(26, 93, 26, 0.3);
 }
 
-/* تذييل الصفحة */
-.footer {
-    background: rgba(12, 11, 19, 0.9);
-    border-top: 1px solid rgba(212, 175, 55, 0.2);
+.heart-btn-icon {
+    width: 20px;
+    height: 20px;
+    background: var(--white);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+}
+
+/* ===== الفوتر ===== */
+.main-footer {
+    background: rgba(10, 25, 41, 0.9);
+    border-top: 2px solid rgba(212, 175, 55, 0.2);
     padding: var(--space-xl) var(--space-lg);
-    margin-top: auto;
+    margin-top: var(--space-xl);
 }
 
 .footer-content {
@@ -1282,21 +1800,30 @@ body.lantern-mode {
     display: flex;
     align-items: center;
     gap: var(--space-sm);
-    font-size: 1.5rem;
-    color: var(--gold-color);
+    font-size: 1.8rem;
+    color: var(--ramadan-gold);
     font-family: 'Dancing Script', cursive;
+}
+
+.footer-moon {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at 30% 30%, var(--ramadan-gold-light) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: moonFloat 4s infinite ease-in-out;
 }
 
 .footer-message p {
     font-size: 1.1rem;
     color: var(--white-secondary);
+    margin-bottom: var(--space-xs);
     opacity: 0.9;
 }
 
 .footer-actions .logout-btn {
     background: rgba(212, 175, 55, 0.1);
-    border: 1px solid var(--gold-color);
-    color: var(--white-color);
+    border: 1px solid var(--ramadan-gold);
+    color: var(--white);
     padding: 12px 25px;
     border-radius: var(--radius-medium);
     font-size: 1rem;
@@ -1312,337 +1839,179 @@ body.lantern-mode {
     transform: scale(1.05);
 }
 
-.copyright {
+.logout-icon {
+    width: 16px;
+    height: 16px;
+    background: var(--white);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z'/%3E%3C/svg%3E") no-repeat center;
+    mask-size: contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask-size: contain;
+}
+
+.footer-copyright {
     margin-top: var(--space-lg);
     padding-top: var(--space-md);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.copyright p {
+.footer-copyright p {
     font-size: 0.9rem;
     color: var(--white-secondary);
     opacity: 0.7;
 }
 
-/* تأثيرات المؤثرات */
-.confetti {
-    position: fixed;
-    width: 15px;
-    height: 15px;
-    background-color: var(--gold-color);
-    top: 0;
-    opacity: 0;
-    z-index: 1000;
-    pointer-events: none;
-}
-
-/* أنيميشن الدخول */
-.fade-in {
-    animation: fadeIn 1s ease forwards;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Media Queries للتجاوب */
-@media (max-width: 1200px) {
-    .section-title {
-        font-size: 2.2rem;
+/* ===== تحسينات الموبايل ===== */
+@media (max-width: 768px) {
+    html {
+        font-size: 14px;
     }
     
-    .welcome-title {
-        font-size: 2.2rem;
+    :root {
+        --space-xl: 30px;
+        --space-lg: 20px;
+        --space-md: 15px;
+        --space-sm: 10px;
+        --space-xs: 5px;
     }
     
-    .counter-value {
-        font-size: 1.8rem;
-    }
-}
-
-@media (max-width: 992px) {
-    .header {
-        flex-direction: column;
-        gap: var(--space-lg);
+    .ramadan-countdown-section {
+        margin: var(--space-md);
+        padding: var(--space-md);
+        border-radius: var(--radius-medium);
     }
     
-    .ramadan-counter {
+    .countdown-header h2 {
+        font-size: 1.5rem;
+    }
+    
+    .countdown-main {
+        gap: var(--space-sm);
+    }
+    
+    .countdown-item {
+        min-width: 80px;
         padding: var(--space-md);
     }
     
-    .counter-display {
-        gap: var(--space-xs);
+    .countdown-number {
+        font-size: 2.2rem;
     }
     
-    .counter-item {
-        min-width: 70px;
-        padding: var(--space-sm);
+    .countdown-separator {
+        font-size: 1.8rem;
     }
     
-    .counter-value {
-        font-size: 1.6rem;
+    .moon-phase {
+        flex-direction: column;
+        gap: var(--space-lg);
+        padding: var(--space-md);
     }
     
-    .audio-container {
+    .moon-shape {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .status-content {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-md);
+    }
+    
+    .status-icon {
+        margin-bottom: var(--space-xs);
+    }
+    
+    .status-text {
+        text-align: center;
+    }
+    
+    .player-container {
         flex-direction: column;
         gap: var(--space-sm);
     }
     
-    .audio-controls {
+    .player-controls {
         min-width: 100%;
-    }
-}
-
-@media (max-width: 768px) {
-    :root {
-        --space-xl: 2rem;
-        --space-lg: 1.5rem;
-        --space-md: 1rem;
-        --space-sm: 0.75rem;
-        --space-xs: 0.5rem;
-    }
-    
-    .login-box {
-        padding: var(--space-lg);
-    }
-    
-    .welcome-title {
-        font-size: 2rem;
-    }
-    
-    .welcome-message {
-        font-size: 1rem;
-    }
-    
-    .section-title {
-        font-size: 1.8rem;
-    }
-    
-    .section-title:after {
-        width: 100px;
-    }
-    
-    .counter-display {
-        gap: 5px;
-    }
-    
-    .counter-item {
-        min-width: 60px;
-        padding: 8px;
-    }
-    
-    .counter-value {
-        font-size: 1.4rem;
-    }
-    
-    .counter-separator {
-        font-size: 1.4rem;
-    }
-    
-    .counter-label {
-        font-size: 0.8rem;
-    }
-    
-    .invitation-title {
-        font-size: 1.6rem;
-    }
-    
-    .invitation-body {
-        padding: var(--space-md);
-    }
-    
-    .invitation-text {
-        font-size: 1.1rem;
-    }
-    
-    .swiper {
-        height: 300px;
-    }
-    
-    .surprise-btn {
-        padding: 20px 30px;
-        font-size: 1.1rem;
-    }
-    
-    .surprise-header h3 {
-        font-size: 1.6rem;
-    }
-    
-    .lantern-decoration {
-        display: none;
-    }
-}
-
-@media (max-width: 576px) {
-    .login-box {
-        padding: var(--space-md);
-    }
-    
-    .welcome-title {
-        font-size: 1.8rem;
-    }
-    
-    .password-input {
-        padding: 15px 45px 15px 15px;
-    }
-    
-    .submit-btn {
-        padding: 15px 20px;
-        font-size: 1rem;
-    }
-    
-    .section-title {
-        font-size: 1.6rem;
-    }
-    
-    .counter-display {
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-    
-    .counter-item {
-        min-width: calc(50% - 10px);
-        margin-bottom: 10px;
-    }
-    
-    .counter-separator {
-        display: none;
-    }
-    
-    .invitation-title {
-        font-size: 1.4rem;
-    }
-    
-    .invitation-text {
-        font-size: 1rem;
-    }
-    
-    .invitation-text-container {
-        padding: var(--space-sm);
     }
     
     .swiper {
         height: 250px;
     }
     
-    .swiper-button-next,
-    .swiper-button-prev {
-        width: 40px;
-        height: 40px;
-        display: none;
-    }
-    
-    .theme-toggle {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-    
-    .footer-logo {
-        font-size: 1.3rem;
-    }
-    
-    .footer-message p {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .counter-item {
-        min-width: 100%;
-    }
-    
-    .invitation-card {
-        border-radius: var(--radius-medium);
-    }
-    
-    .invitation-header {
-        padding: var(--space-md);
-    }
-    
-    .invitation-icon {
+    .section-title h2 {
         font-size: 2rem;
     }
     
-    .swiper {
-        height: 200px;
-    }
-    
-    .video-play-btn {
-        padding: 12px 20px;
-        font-size: 1rem;
-    }
-    
-    .surprise-btn {
-        flex-direction: column;
-        gap: var(--space-sm);
-        padding: 15px 25px;
-    }
-}
-
-/* تحسينات للأجهزة اللوحية */
-@media (min-width: 769px) and (max-width: 1024px) {
-    .main-content {
-        padding: var(--space-md);
-    }
-    
-    .invitation-card {
-        max-width: 90%;
-    }
-    
-    .memories-container {
-        max-width: 90%;
-    }
-    
-    .video-container {
-        max-width: 90%;
-    }
-}
-
-/* تحسينات للشاشات الكبيرة جدًا */
-@media (min-width: 1600px) {
-    .main-content {
-        max-width: 1500px;
-    }
-    
-    .header {
-        padding: var(--space-lg) var(--space-xl);
-    }
-    
-    .ramadan-counter {
-        padding: var(--space-xl);
-    }
-    
-    .counter-value {
+    .welcome-title {
         font-size: 2.2rem;
     }
 }
 
-/* دعم الوضع الداكن */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: var(--dark-color);
+@media (max-width: 576px) {
+    .countdown-main {
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    
+    .countdown-item {
+        min-width: calc(50% - 20px);
+        margin-bottom: var(--space-sm);
+    }
+    
+    .countdown-separator {
+        display: none;
+    }
+    
+    .countdown-number {
+        font-size: 2rem;
+    }
+    
+    .moon-shape {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .moon-text {
+        font-size: 1.1rem;
+    }
+    
+    .login-box {
+        padding: var(--space-lg);
+    }
+}
+
+@media (max-width: 400px) {
+    .countdown-item {
+        min-width: 100%;
+    }
+    
+    .countdown-number {
+        font-size: 1.8rem;
+    }
+    
+    .ramadan-countdown-section {
+        margin: var(--space-sm);
+        padding: var(--space-sm);
     }
 }
 
 /* دعم اللمس */
 @media (hover: none) and (pointer: coarse) {
     .submit-btn:hover,
-    .theme-toggle:hover,
-    .close-btn:hover,
-    .video-play-btn:hover,
-    .surprise-btn:hover,
-    .logout-btn:hover {
+    .theme-toggle-btn:hover,
+    .close-message-btn:hover,
+    .logout-btn:hover,
+    .surprise-button:hover {
         transform: none;
     }
     
-    .video-controls {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    
-    .swiper-button-next,
-    .swiper-button-prev {
-        display: flex;
+    .submit-btn:active,
+    .theme-toggle-btn:active,
+    .close-message-btn:active,
+    .logout-btn:active,
+    .surprise-button:active {
+        transform: scale(0.95);
     }
 }

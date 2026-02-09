@@ -2,42 +2,63 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌙 رمضان معًا | صفحة رومانسية للأحباب</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>🌙 رمضان معًا | صفحة رومانسية رمضانية</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Dancing+Script:wght@400;500;600;700&family=El+Messiri:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- خلفية متحركة رمضانية واقعية -->
-    <div class="background-animation" id="backgroundAnimation">
-        <!-- ستضاف العناصر بالجافاسكريبت -->
+    <!-- خلفية رمضانية متحركة -->
+    <div class="ramadan-background">
+        <!-- عناصر رمضانية متحركة -->
+        <div class="floating-moon"></div>
+        <div class="floating-star star1"></div>
+        <div class="floating-star star2"></div>
+        <div class="floating-star star3"></div>
+        <div class="floating-star star4"></div>
+        
+        <!-- فوانيس رمضانية واقعية -->
+        <div class="traditional-lantern lantern1"></div>
+        <div class="traditional-lantern lantern2"></div>
+        <div class="traditional-lantern lantern3"></div>
+        <div class="traditional-lantern lantern4"></div>
+        
+        <!-- نجوم متلألئة -->
+        <div class="twinkling-stars"></div>
     </div>
     
     <!-- صفحة الدخول -->
-    <div class="login-page" id="loginPage">
+    <div class="login-page active" id="loginPage">
         <div class="login-container">
             <div class="login-box" id="loginBox">
-                <div class="moon-illustration">
-                    <div class="crescent-moon"></div>
+                <!-- تصميم فانوس رمضاني واقعي -->
+                <div class="lantern-decoration">
+                    <div class="lantern-top"></div>
+                    <div class="lantern-body">
+                        <div class="lantern-pattern"></div>
+                        <div class="lantern-light"></div>
+                    </div>
+                    <div class="lantern-bottom"></div>
+                    <div class="lantern-tassel"></div>
                 </div>
-                <h1 class="welcome-title">🌙 أهلاً بك في عالمنا الرمضاني 🥰</h1>
-                <p class="welcome-message">هذه الصفحة مخصصة لك وحدك، يا أجمل من شاركني الحياة وأغلى من ملك الدنيا كلها. أدخل كلمة السر الخاصة بنا لنبدأ رحلتنا الرمضانية معًا ❤️</p>
+                
+                <h1 class="welcome-title">رمضان معًا</h1>
+                <p class="welcome-message">مكان خاص بنا في أجمل شهور السنة<br>أدخل كلمة السر التي تجمعنا لنبدأ رحلة رمضان معًا</p>
                 
                 <div class="input-group">
-                    <input type="password" class="password-input" id="passwordInput" placeholder="أدخل كلمة السر الخاصة بنا">
-                    <i class="fas fa-lock input-icon"></i>
+                    <div class="input-icon"></div>
+                    <input type="password" class="password-input" id="passwordInput" placeholder="الكلمة السرية الخاصة بنا" autocomplete="off">
                 </div>
                 
-                <p class="password-hint">💡 تلميح: كلمة خاصة بنا تجمعنا في كل وقت ❤️</p>
+                <p class="password-hint">تلميح: شعورنا الجميل تجاه بعضنا</p>
                 
                 <button class="submit-btn" id="submitBtn">
-                    <span class="btn-text">دخول عالمنا الرمضاني</span>
-                    <i class="fas fa-heart btn-icon"></i>
+                    <span class="btn-icon"></span>
+                    <span>دخول عالمنا الرمضاني</span>
                 </button>
                 
-                <div class="message-container">
+                <div class="messages">
                     <div class="error-message" id="errorMessage"></div>
                     <div class="success-message" id="successMessage"></div>
                 </div>
@@ -47,83 +68,126 @@
     
     <!-- الصفحة الرئيسية -->
     <div class="main-page" id="mainPage">
-        <!-- شريط التحكم العلوي -->
-        <header class="header">
-            <!-- عدّاد رمضان الحقيقي -->
-            <div class="ramadan-counter-container">
-                <div class="ramadan-counter">
-                    <div class="counter-header">
-                        <i class="fas fa-moon counter-icon"></i>
-                        <h2 class="counter-title" id="ramadanCounterTitle">عدّاد رمضان</h2>
+        <!-- الهيدر -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <span>رمضان معًا</span>
+                </div>
+                <div class="header-actions">
+                    <button class="theme-toggle-btn" id="themeToggle">
+                        <div class="theme-icon"></div>
+                        <span>الوضع الليلي</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        
+        <!-- عدّاد رمضان -->
+        <section class="ramadan-countdown-section" id="countdownSection">
+            <div class="countdown-container">
+                <!-- عنوان العداد -->
+                <div class="countdown-header">
+                    <div class="moon-icon">
+                        <div class="moon-glow"></div>
+                        <div class="moon-crescent"></div>
+                    </div>
+                    <h2><span class="header-icon"></span> عداد رمضان 1446</h2>
+                    <p class="countdown-subtitle" id="countdownSubtitle">العد التنازلي لرمضان الكريم</p>
+                </div>
+                
+                <!-- أرقام العداد -->
+                <div class="countdown-main">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="countdownDays">00</div>
+                        <div class="countdown-label">أيام</div>
+                        <div class="countdown-progress">
+                            <div class="progress-fill" id="daysProgress"></div>
+                        </div>
                     </div>
                     
-                    <div class="counter-display">
-                        <div class="counter-item">
-                            <div class="counter-value" id="daysCount">00</div>
-                            <div class="counter-label">أيام</div>
-                        </div>
-                        <div class="counter-separator">:</div>
-                        <div class="counter-item">
-                            <div class="counter-value" id="hoursCount">00</div>
-                            <div class="counter-label">ساعات</div>
-                        </div>
-                        <div class="counter-separator">:</div>
-                        <div class="counter-item">
-                            <div class="counter-value" id="minutesCount">00</div>
-                            <div class="counter-label">دقائق</div>
-                        </div>
-                        <div class="counter-separator">:</div>
-                        <div class="counter-item">
-                            <div class="counter-value" id="secondsCount">00</div>
-                            <div class="counter-label">ثواني</div>
+                    <div class="countdown-separator">:</div>
+                    
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="countdownHours">00</div>
+                        <div class="countdown-label">ساعات</div>
+                        <div class="countdown-progress">
+                            <div class="progress-fill" id="hoursProgress"></div>
                         </div>
                     </div>
                     
-                    <div class="counter-status" id="counterStatus">
-                        <i class="fas fa-star status-icon"></i>
-                        <span id="statusText">في انتظار رمضان الكريم</span>
+                    <div class="countdown-separator">:</div>
+                    
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="countdownMinutes">00</div>
+                        <div class="countdown-label">دقائق</div>
+                        <div class="countdown-progress">
+                            <div class="progress-fill" id="minutesProgress"></div>
+                        </div>
                     </div>
                     
-                    <div class="moon-progress-container">
-                        <div class="moon-progress">
-                            <svg viewBox="0 0 100 100">
-                                <circle class="moon-track" cx="50" cy="50" r="45"></circle>
-                                <circle class="moon-progress-circle" cx="50" cy="50" r="45"></circle>
-                            </svg>
-                            <div class="moon-fill"></div>
+                    <div class="countdown-separator">:</div>
+                    
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="countdownSeconds">00</div>
+                        <div class="countdown-label">ثواني</div>
+                        <div class="countdown-progress">
+                            <div class="progress-fill" id="secondsProgress"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- مراحل القمر -->
+                <div class="moon-phase-container">
+                    <div class="moon-phase">
+                        <div class="moon-visual">
+                            <div class="moon-shape">
+                                <div class="moon-fill" id="moonFill"></div>
+                            </div>
+                        </div>
+                        <div class="moon-info">
+                            <span class="moon-text" id="moonText">الهلال يبدأ</span>
+                            <div class="moon-progress-bar">
+                                <div class="moon-progress-fill" id="moonPhaseFill"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- رسالة الحالة -->
+                <div class="countdown-status">
+                    <div class="status-content">
+                        <div class="status-icon"></div>
+                        <div class="status-text">
+                            <div class="status-title" id="statusTitle">في انتظار رمضان الكريم</div>
+                            <div class="status-message" id="statusMessage">رمضان يبدأ 23 مارس 2025</div>
                         </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- زر التحكم في الإضاءة -->
-            <button class="theme-toggle" id="themeToggle">
-                <div class="theme-icon">
-                    <i class="fas fa-moon"></i>
-                </div>
-                <span class="theme-text">الوضع الليلي</span>
-            </button>
-        </header>
+        </section>
         
-        <!-- مشغل الصوت الثابت -->
-        <div class="audio-player-fixed" id="audioPlayer">
-            <div class="audio-container">
-                <button class="audio-control-btn play-pause-btn" id="playPauseBtn">
-                    <i class="fas fa-play"></i>
+        <!-- مشغل الصوت -->
+        <div class="audio-player" id="audioPlayer">
+            <div class="player-container">
+                <button class="play-btn" id="playBtn">
+                    <div class="play-icon"></div>
                 </button>
                 
-                <div class="audio-info">
-                    <div class="audio-title">🎵 موسيقى رمضانية هادئة</div>
-                    <div class="audio-time">
-                        <span id="currentTime">0:00</span> / <span id="durationTime">0:00</span>
+                <div class="track-info">
+                    <div class="track-title">موسيقى رمضانية هادئة</div>
+                    <div class="track-time">
+                        <span id="currentTime">0:00</span> / 
+                        <span id="totalTime">0:00</span>
                     </div>
                 </div>
                 
-                <div class="audio-controls">
-                    <input type="range" class="progress-slider" id="progressSlider" min="0" max="100" value="0">
+                <div class="player-controls">
+                    <input type="range" class="progress-bar" id="progressBar" min="0" max="100" value="0">
                     <div class="volume-control">
-                        <i class="fas fa-volume-up volume-icon"></i>
-                        <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="50">
+                        <div class="volume-icon" id="volumeIcon"></div>
+                        <input type="range" class="volume-bar" id="volumeBar" min="0" max="100" value="50">
                     </div>
                 </div>
             </div>
@@ -131,60 +195,61 @@
         
         <!-- المحتوى الرئيسي -->
         <main class="main-content">
-            <!-- دعوة ليك - محسنة -->
-            <section class="invitation-section">
-                <div class="section-header">
-                    <i class="fas fa-heart section-icon"></i>
-                    <h2 class="section-title">رسالة خاصة من القلب</h2>
-                    <i class="fas fa-heart section-icon"></i>
+            <!-- رسالة الدعوة -->
+            <section class="invitation-section animated-section">
+                <div class="section-title">
+                    <div class="section-icon envelope-icon"></div>
+                    <h2>رسالة خاصة من القلب</h2>
+                    <div class="section-icon heart-icon"></div>
                 </div>
                 
                 <div class="invitation-card" id="invitationCard">
                     <div class="invitation-header">
-                        <div class="invitation-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3 class="invitation-title">دعوة من قلبي ليك في رمضان 🤍</h3>
+                        <div class="lantern-small"></div>
+                        <h3>دعوة رمضانية خاصة</h3>
+                        <div class="lantern-small"></div>
                     </div>
                     
                     <div class="invitation-body">
-                        <div class="invitation-text-container">
-                            <div class="invitation-text" id="invitationText">
-                                <!-- سيتم ملؤه بالجافاسكريبت -->
+                        <div class="message-container">
+                            <div class="message-text" id="invitationMessage">
+                                <!-- سيتم ملؤها بالجافاسكريبت -->
                             </div>
-                            <div class="typing-cursor"></div>
+                            <div class="typing-indicator">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
                         </div>
                         
-                        <div class="invitation-footer">
-                            <button class="close-btn" id="closeInvitationBtn">
-                                <i class="fas fa-times"></i>
-                                <span>أغلق الرسالة</span>
-                            </button>
-                        </div>
+                        <button class="close-message-btn" id="closeMessageBtn">
+                            <div class="close-icon"></div>
+                            أغلق الرسالة
+                        </button>
                     </div>
                 </div>
             </section>
             
-            <!-- ذكرياتنا - Carousel محسن -->
-            <section class="memories-section">
-                <div class="section-header">
-                    <i class="fas fa-images section-icon"></i>
-                    <h2 class="section-title">ذكرياتنا الجميلة</h2>
-                    <i class="fas fa-images section-icon"></i>
+            <!-- الذكريات -->
+            <section class="memories-section animated-section">
+                <div class="section-title">
+                    <div class="section-icon images-icon"></div>
+                    <h2>ذكرياتنا الرمضانية</h2>
+                    <div class="section-icon images-icon"></div>
                 </div>
                 
-                <div class="memories-container">
+                <div class="memories-slider-container">
                     <div class="swiper memories-slider">
                         <div class="swiper-wrapper" id="memoriesSlider">
-                            <!-- سيتم إضافة الصور بالجافاسكريبت -->
+                            <!-- سيتم إضافة الصور ديناميكيًا -->
                         </div>
                         
                         <!-- عناصر التحكم -->
                         <div class="swiper-button-next">
-                            <i class="fas fa-chevron-left"></i>
+                            <div class="arrow-icon"></div>
                         </div>
                         <div class="swiper-button-prev">
-                            <i class="fas fa-chevron-right"></i>
+                            <div class="arrow-icon prev"></div>
                         </div>
                         
                         <div class="swiper-pagination"></div>
@@ -192,127 +257,115 @@
                 </div>
             </section>
             
-            <!-- قسم الفيديو المحسن -->
-            <section class="video-section">
-                <div class="section-header">
-                    <i class="fas fa-video section-icon"></i>
-                    <h2 class="section-title">لحظاتنا معًا</h2>
-                    <i class="fas fa-video section-icon"></i>
+            <!-- الفيديو -->
+            <section class="video-section animated-section">
+                <div class="section-title">
+                    <div class="section-icon video-icon"></div>
+                    <h2>لحظاتنا معًا</h2>
+                    <div class="section-icon video-icon"></div>
                 </div>
                 
-                <div class="video-container" id="videoContainer">
-                    <div class="video-wrapper">
-                        <div class="video-frame">
-                            <div class="video-overlay"></div>
-                            <video id="memoryVideo" preload="metadata" poster="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
-                                <source src="https://assets.mixkit.co/videos/preview/mixkit-couple-having-a-picnic-on-a-beach-at-sunset-41515-large.mp4" type="video/mp4">
-                                متصفحك لا يدعم تشغيل الفيديو
-                            </video>
-                            
-                            <div class="video-controls">
-                                <button class="video-play-btn" id="videoPlayBtn">
-                                    <div class="play-icon">
-                                        <i class="fas fa-play"></i>
-                                    </div>
-                                    <div class="play-text">شاهد لحظاتنا</div>
-                                </button>
-                                
-                                <div class="video-progress">
-                                    <input type="range" class="video-progress-slider" id="videoProgressSlider" min="0" max="100" value="0">
-                                </div>
+                <div class="video-player-container">
+                    <div class="video-frame">
+                        <div class="video-overlay">
+                            <div class="play-button-large" id="videoPlayBtn">
+                                <div class="play-large-icon"></div>
                             </div>
+                            <div class="video-title">لحظات سعيدة في رمضان</div>
                         </div>
                         
-                        <div class="video-decor">
-                            <div class="lantern-decoration left">
-                                <div class="lantern-body"></div>
-                                <div class="lantern-light"></div>
-                            </div>
-                            <div class="lantern-decoration right">
-                                <div class="lantern-body"></div>
-                                <div class="lantern-light"></div>
-                            </div>
-                        </div>
+                        <video id="memoryVideo" preload="metadata" poster="images/video-poster.jpg">
+                            <source src="videos/our-memory.mp4" type="video/mp4">
+                            متصفحك لا يدعم تشغيل الفيديو
+                        </video>
+                    </div>
+                    
+                    <div class="video-controls">
+                        <button class="video-control-btn" id="videoControlBtn">
+                            <div class="video-play-icon"></div>
+                        </button>
+                        <input type="range" class="video-progress" id="videoProgress" min="0" max="100" value="0">
+                        <div class="video-time" id="videoTime">0:00 / 0:00</div>
                     </div>
                 </div>
             </section>
             
-            <!-- زر المفاجأة -->
-            <section class="surprise-section">
-                <div class="section-header">
-                    <i class="fas fa-gift section-icon"></i>
-                    <h2 class="section-title">مفاجأة رمضانية خاصة</h2>
-                    <i class="fas fa-gift section-icon"></i>
+            <!-- المفاجأة -->
+            <section class="surprise-section animated-section">
+                <div class="section-title">
+                    <div class="section-icon gift-icon"></div>
+                    <h2>مفاجأة رمضانية</h2>
+                    <div class="section-icon gift-icon"></div>
                 </div>
                 
                 <div class="surprise-container">
-                    <button class="surprise-btn" id="surpriseBtn">
-                        <div class="surprise-icon">
-                            <i class="fas fa-gift"></i>
+                    <button class="surprise-button" id="surpriseButton">
+                        <div class="gift-box">
+                            <div class="gift-lid"></div>
+                            <div class="gift-body"></div>
+                            <div class="gift-bow"></div>
                         </div>
-                        <div class="surprise-text">
-                            <span>افتح المفاجأة 🎁</span>
-                        </div>
+                        <span class="surprise-text">افتح المفاجأة</span>
                     </button>
                     
                     <div class="surprise-message" id="surpriseMessage">
-                        <div class="surprise-header">
-                            <i class="fas fa-star surprise-star"></i>
-                            <h3>يا أغلى إنسان في حياتي! 🌙</h3>
-                            <i class="fas fa-star surprise-star"></i>
+                        <div class="message-header">
+                            <div class="star-icon"></div>
+                            <h3>يا أغلى هدية في حياتي!</h3>
+                            <div class="star-icon"></div>
                         </div>
                         
-                        <div class="surprise-content">
-                            <p>أنا محظوظ/ة جدًا لأن رمضان أتى وأنت معي 🥹❤️</p>
-                            <p>كل لحظة معك نعمة، وكل رمضان معك هدية من الله لا تُقدر بثمن.</p>
-                            <p>أسأل الله أن يجعله شهر خير وبركة علينا، وأن يزيدنا فيه قربًا من بعض وعناده.</p>
-                            <p>رمضان كريم يا أغلى الناس، وأسأل الله أن يجمعنا دائمًا في جنات النعيم ❤️🌙</p>
+                        <div class="message-content">
+                            <p>رمضان كريم يا حبيبي/حبيبتي</p>
+                            <p>وجودك في حياتي نعمة كبيرة، ورمضان معك يجعل هذه النعمة أكبر وأجمل.</p>
+                            <p>أسأل الله أن يجعل هذا الشهر بداية خير وبركة لنا، وأن يديم علينا هذه السعادة.</p>
+                            <p>أحبك في الله وأسأل الله أن يجمعنا في جنات النعيم</p>
                         </div>
                         
                         <button class="close-surprise-btn" id="closeSurpriseBtn">
-                            <i class="fas fa-heart"></i>
-                            <span>أحبك يا حياتي ❤️</span>
+                            <div class="heart-btn-icon"></div>
+                            أحبك يا حياتي
                         </button>
                     </div>
                 </div>
             </section>
         </main>
         
-        <!-- تذييل الصفحة -->
-        <footer class="footer">
+        <!-- الفوتر -->
+        <footer class="main-footer">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <i class="fas fa-moon"></i>
+                    <div class="footer-moon"></div>
                     <span>رمضان معًا</span>
                 </div>
                 
                 <div class="footer-message">
-                    <p>صفحة خاصة بنا، لنحب بعضنا أكثر في رمضان ❤️</p>
+                    <p>صفحة خاصة بنحب بعضنا أكثر في رمضان</p>
+                    <p>كل عام وأنتم أقرب إلى بعض وإلى الله</p>
                 </div>
                 
                 <div class="footer-actions">
                     <button class="logout-btn" id="logoutBtn">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>خروج آمن</span>
+                        <div class="logout-icon"></div>
+                        خروج آمن
                     </button>
                 </div>
             </div>
             
-            <div class="copyright">
-                <p>© 2024 - كل عام وأنتم أقرب إلى بعض ❤️🌙</p>
+            <div class="footer-copyright">
+                <p>© 1446 - 2024 | صنع بكل الحب لرمضان</p>
             </div>
         </footer>
     </div>
     
-    <!-- موسيقى خلفية -->
-    <audio id="backgroundMusic" preload="metadata">
-        <source src="https://assets.mixkit.co/music/preview/mixkit-a-little-peace-454.mp3" type="audio/mpeg">
+    <!-- ملفات الصوت -->
+    <audio id="backgroundMusic" preload="auto">
+        <source src="audio/ramadan-music.mp3" type="audio/mpeg">
         متصفحك لا يدعم تشغيل الموسيقى
     </audio>
 
-    <!-- مكتبات خارجية -->
+    <!-- مكتبات -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
