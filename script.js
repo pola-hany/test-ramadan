@@ -1,6 +1,6 @@
 // ===== CONFIGURATION =====
 const CONFIG = {
-    PASSWORD: "19/2",
+    PASSWORD: "12/8",
     TARGET_DATE: "February 18, 2026 00:00:00"
 };
 
@@ -299,4 +299,5 @@ document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closePopup();
     }
+
 });
